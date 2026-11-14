@@ -25,11 +25,11 @@ base; each adds different synsets.
   the English words of Princeton WordNet synsets were translated with
   Josef Fronek's *Velký anglicko-český slovník* (LEDA, 2006) and
   confident matches were added.  It also has derivational relations
-  (`derived`, `eng_derivative`).  **Not checked by hand**: its makers
-  looked at 600 synsets and found that 30% had wrong or unwanted
-  synonyms and 20% of the new synsets had the wrong hypernym, and said
-  it would not be published before thorough editing, though it is
-  available for research.
+  (`derived`, `eng_derivative`).  **Not checked by hand**: a check of 600
+  synsets, reported in a bachelor's thesis, found that 30% had wrong
+  or unwanted synonyms and 20% of the new synsets had the wrong
+  hypernym; the version was not to be published before thorough
+  editing, though it is available for research.
 * `wncze-ext.xml.zip`: 28,667 synsets.  Extended a little in a
   linguistics thesis at the University of Naples (200 new synsets, with
   definitions and examples).
@@ -43,8 +43,8 @@ The verb frames (`VALENCY`) probably come from VerbaLex:
 of this repository.  It is the version of the Czech WordNet used to
 annotate the Prague Dependency Treebank, from
 <https://lindat.mff.cuni.cz/repository/handle/11858/00-097C-0000-0001-487A-4>.
-Our notes from when it was downloaded give its licence as
-CC BY-NC-SA 3.0 (non-commercial); see the record for the terms.
+Its licence is CC BY-NC-SA 3.0 (non-commercial); see the record for
+the terms.
 
 It is an older VisDic XML (23,094 synsets, ISO-8859-2, with the sense
 number in a `SENSE` element and the relation type in a `TYPE` element).
