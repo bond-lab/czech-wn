@@ -107,6 +107,8 @@ KNOWN = {"ID", "POS", "ILI", "SYNONYM", "DEF", "USAGE", "ILR", "SUMO", "VALENCY"
 SAFE_ID = re.compile(r"[A-Za-z0-9_.-]+")
 UNSAFE = re.compile(r"[^\w.]|_")  # not allowed in an XML name, or our escape character
 SENSE_ID = re.compile(r"(.+)-s(\d+)")
+ENG20_ID = re.compile(r"ENG20-(\d{8}-[nvab])")
+SHORT_ID = re.compile(r"\d{8}-[nvab]")
 
 log = logging.getLogger("visdic2lmf")
 Facts = Counter[tuple]
@@ -273,9 +275,41 @@ def escape_lemma(lemma: str) -> str:
     return UNSAFE.sub(lambda m: f"_{ord(m.group()):04X}_", lemma)
 
 
+def short_id(sid: str) -> str:
+    """The part of a synset's id after the lexicon id.
+
+    Args:
+        sid: a source synset id, e.g. ``ENG20-00001740-b`` or ``CZE-00000002-z``
+
+    Returns:
+        The id without ``ENG20-`` (``00001740-b``); any other id unchanged
+
+    Raises:
+        ValueError: if another kind of id looks like a shortened one
+    """
+    m = ENG20_ID.fullmatch(sid)
+    if m:
+        return m.group(1)
+    if SHORT_ID.fullmatch(sid):
+        raise ValueError(f"synset id {sid!r} would be read back as ENG20-{sid}")
+    return sid
+
+
+def source_id(short: str) -> str:
+    """The source synset id that ``short_id`` shortened.
+
+    Args:
+        short: the part of a synset's id after the lexicon id
+
+    Returns:
+        The id as the source has it
+    """
+    return f"ENG20-{short}" if SHORT_ID.fullmatch(short) else short
+
+
 def _relation(wn_id: str, kind: str, target: str) -> Relation:
     link = RELATIONS.get(kind, "other")
-    rel = Relation(link=link, target=f"{wn_id}-{target}")
+    rel = Relation(link=link, target=f"{wn_id}-{short_id(target)}")
     if RELATIONS_BACK.get(link) != kind:
         rel.meta["dc:type"] = kind
     return rel
@@ -286,7 +320,7 @@ def _synset(ss: ET.Element, wn_id: str, ili_map: dict[str, str]) -> tuple[Synset
     sid = text(ss.find("ID"))
     if not SAFE_ID.fullmatch(sid):
         raise ValueError(f"synset id {sid!r} cannot be part of an XML id")
-    out = Synset(id=f"{wn_id}-{sid}")
+    out = Synset(id=f"{wn_id}-{short_id(sid)}")
     notes: list[tuple[str, str]] = []
     groups = [[text(f) for f in valency if text(f)] for valency in ss.findall("VALENCY")]
     frames = [f for group in groups for f in group]
@@ -402,6 +436,9 @@ def convert(synsets: list[ET.Element], ili_map: dict[str, str], lexicon: Lexicon
 
     if len({e.id for e in entries.values()}) != len(entries):
         raise ValueError("two entries with the same id")
+    shared = {str(e.id) for e in entries.values()} & set(out_synsets)
+    if shared:
+        raise ValueError(f"an entry and a synset with the same id: {sorted(shared)}")
     # WN-LMF wants the target of a relation in the file
     for synset in list(out_synsets.values()):
         for rel in synset.relations:
@@ -433,11 +470,11 @@ def lmf_facts(items: list[Item]) -> Facts:
             for sense in item.senses:
                 m = SENSE_ID.fullmatch(str(sense.id))
                 assert m and m.group(1) == sense.synset, sense.id
-                facts[("literal", str(sense.synset)[cut:], int(m.group(2)), item.lemma,
+                facts[("literal", source_id(str(sense.synset)[cut:]), int(m.group(2)), item.lemma,
                        sense.n or sense.meta.get("dc:identifier", ""),
                        sense.meta.get("note", ""))] += 1
         elif isinstance(item, Synset):
-            sid = str(item.id)[cut:]
+            sid = source_id(str(item.id)[cut:])
             notes = _pairs(item.meta.get("note"))
             inferred = {v for k, v in notes if k == "inferred"}
             if "synset" in inferred:
@@ -465,7 +502,7 @@ def lmf_facts(items: list[Item]) -> Facts:
                 facts[("usage", sid, n, e.text)] += 1
             for rel in item.relations:
                 kind = rel.meta.get("dc:type") or RELATIONS_BACK[str(rel.link)]
-                facts[("ilr", sid, kind, str(rel.target)[cut:])] += 1
+                facts[("ilr", sid, kind, source_id(str(rel.target)[cut:]))] += 1
             if "dc:contributor" in item.meta:
                 stamp = [item.meta["dc:contributor"], item.meta.get("dc:date")]
                 facts[("stamp", sid, " ".join(x for x in stamp if x))] += 1

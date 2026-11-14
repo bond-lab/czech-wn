@@ -89,7 +89,7 @@ def items(synsets):
 
 
 def synset(items, sid: str) -> Synset:
-    return next(i for i in items if isinstance(i, Synset) and i.id == f"wncze-{sid}")
+    return next(i for i in items if isinstance(i, Synset) and i.id == f"wncze-{v.short_id(sid)}")
 
 
 def test_nothing_is_lost(synsets, items):
@@ -126,7 +126,7 @@ def test_synset_fields(items):
     assert (ss.pos, ss.ili, ss.lexicalized) == ("n", "i1", "true")
     assert [d.text for d in ss.definitions] == ["šelma psovitá", "druhá definice"]
     assert [e.text for e in ss.examples] == ["pes štěká"]
-    assert ss.members == "wncze-ENG20-00000001-n-s1 wncze-ENG20-00000001-n-s2"
+    assert ss.members == "wncze-00000001-n-s1 wncze-00000001-n-s2"
     assert ss.meta == {
         "dc:contributor": "kar", "dc:date": "2010/04/12", "dc:subject": "zoologie",
         "note": "ili=i2; snote=ssjč1; snote=did; bcs=3; version=21; "
@@ -137,9 +137,9 @@ def test_relations_keep_their_own_name_where_it_is_not_the_usual_one(items):
     rels = synset(items, "ENG20-00000001-n").relations
 
     assert [(r.link, r.target, r.meta) for r in rels] == [
-        ("hypernym", "wncze-ENG20-00000002-n", {}),
+        ("hypernym", "wncze-00000002-n", {}),
         ("similar", "wncze-CZE-00000009-z", {"dc:type": "verb_group"}),
-        ("other", "wncze-ENG20-00000003-b", {"dc:type": "eng_derivative"})]
+        ("other", "wncze-00000003-b", {"dc:type": "eng_derivative"})]
 
 
 def test_a_missing_relation_target_gets_a_marked_synset(items):
@@ -177,8 +177,8 @@ def test_one_entry_for_a_word_and_a_part_of_speech(items):
 def test_sense_number_and_note(items):
     senses = {s.id: s for e in items if isinstance(e, Entry) for s in e.senses}
 
-    first = senses["wncze-ENG20-00000001-n-s1"]
-    second = senses["wncze-ENG20-00000001-n-s2"]
+    first = senses["wncze-00000001-n-s1"]
+    second = senses["wncze-00000001-n-s2"]
     assert (first.n, first.meta) == ("2", {"note": "hovor."})
     assert (second.n, second.meta) == (None, {"dc:identifier": "x1"})
 
@@ -212,3 +212,16 @@ def test_words_that_are_not_the_literals_are_refused():
 def test_ili_key():
     assert v.ili_key("ENG20-00001740-b") == "00001740-r"
     assert v.ili_key("CZE-00000002-z") is None
+
+
+def test_synset_ids_are_shortened_and_restored():
+    assert v.short_id("ENG20-00001740-b") == "00001740-b"
+    assert v.short_id("CZE-00000002-z") == "CZE-00000002-z"
+    assert v.source_id("00001740-b") == "ENG20-00001740-b"
+    assert v.source_id("CZE-00000002-z") == "CZE-00000002-z"
+    assert v.source_id("CZE-0000000201") == "CZE-0000000201"
+
+
+def test_an_id_that_would_be_read_back_wrongly_is_refused():
+    with pytest.raises(ValueError, match="read back"):
+        v.short_id("00001740-n")

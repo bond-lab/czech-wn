@@ -76,7 +76,7 @@ linked to the Interlingual Index.
 
 | DEBVisDic | WN-LMF |
 |---|---|
-| `ID` | the synset's id: `wncze-` and the source id unchanged (`wncze-ENG20-02001223-n`) |
+| `ID` | the synset's id: `wncze-` and the source id, without `ENG20-` to keep it short (`ENG20-02001223-n` is `wncze-02001223-n`; `CZE-00000002-z` is `wncze-CZE-00000002-z`).  An id of eight digits and a part of speech is a Princeton WordNet 2.0 offset |
 | `POS` | `partOfSpeech`; `b` (adverb) is written `r` |
 | `ILI` | `ili`.  36 synsets have several (the 2.0 synset was split in 3.0): the one CILI's map gives is in `ili`, the others in the note as `ili=` |
 | `LITERAL` | a `Sense` of the entry for that word and part of speech; the sense's id is the synset's id and the literal's place in it (`-s1`), and `members` keeps the order |
