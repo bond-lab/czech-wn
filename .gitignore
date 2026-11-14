@@ -1,1 +1,10 @@
 *~
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+# written by visdic2lmf.py; the XML and its package are release assets
+/release/
+# written by the tests
+/tests/output/
