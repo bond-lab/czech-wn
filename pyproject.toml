@@ -1,7 +1,7 @@
 [project]
 name = "czech-wn"
 version = "2.1"
-description = "Czech WordNet: the DEBVisDic sources and their conversion to WN-LMF"
+description = "Czech WordNet: the DEBVisDic sources, their conversion to WN-LMF, and the changes since"
 requires-python = ">=3.10"
 dependencies = []
 

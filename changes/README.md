@@ -17,10 +17,10 @@ stays as the history.
 ## A change record
 
 ```json
-{"id": "wncze-2.1-6", "action": "add_sense", "lexicon": "wncze",
- "synset": "wncze-NTUMC-80002448-a", "lemma": "Desetiletý", "pos": "a",
- "user": "s67", "date": "2024-04-13",
- "source": "NTU-MC wordnet database, frozen 2026-11-13: annotator s67",
+{"id": "wncze-2.1-594", "action": "add_sense", "lexicon": "wncze",
+ "synset": "wncze-NTUMC-80002475-x", "lemma": "to", "pos": "x",
+ "user": "s73", "date": "2025-04-23",
+ "source": "NTU-MC wordnet database, frozen 2026-11-13: annotator s73",
  "reason": "added in NTU-MC by an annotator", "base": "wncze-2.1"}
 ```
 
@@ -104,7 +104,7 @@ added, and 21 examples and 1 definition wait for their synset.
 
 To rule, write `add` or `drop` in the `ruling` column.  While the log
 holds only these first records, `scripts/ntumc2changes.py` can make it
-again, and then includes the rows ruled `add`.  Once the log has other
+again (empty the file first), and then includes the rows ruled `add`.  Once the log has other
 records, an accepted row is added as a new record at the end.
 
 ### Not turned into records

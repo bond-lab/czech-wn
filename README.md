@@ -48,9 +48,10 @@ synsets) was extended automatically from a bilingual dictionary and has
 not been checked by hand; `wncze-ext.xml.zip` (28,667 synsets) was
 extended a little in a thesis at the University of Naples.
 
-Synsets are identified by their Princeton WordNet 2.0 synset
-(`ENG20-02001223-n`), or by a Czech id for the 254 concepts that
-Princeton WordNet does not have (`CZE-00000002-z`).
+In the sources, synsets are identified by their Princeton WordNet 2.0
+synset (`ENG20-02001223-n`), or by a Czech id for the 254 concepts that
+Princeton WordNet does not have (`CZE-00000002-z`).  In WN-LMF these
+are `wncze-02001223-n` and `wncze-CZE-00000002-z`.
 
 An earlier version (1.0, 2008) is distributed by ELRA, under other
 licences: <https://live.european-language-grid.eu/catalogue/lcr/2364>.
@@ -156,6 +157,10 @@ wordnets of NTU-MC:
 ```
 uv run release.py 2.2     # -> release/wncze-2.2.xml, release/wncze-2.2.tar.xz
 ```
+
+It downloads the released 2.1 once and checks it, and needs `NTUMC`
+checked out beside this repository (and `schemas`, to check the result
+against the WN-LMF DTD).
 
 The first changes bring in the words, definitions and examples added
 to Czech in the NTU-MC wordnet: 813 senses, 508 synsets, 4 definitions
