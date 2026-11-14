@@ -35,8 +35,11 @@ BibTeX for this and the references below is in `citation.bib`.
 |---|---|
 | `sources/` | the files as we received them: three versions of the Czech WordNet, and the PDT annotation dictionary, which has **a different licence**; see `sources/README.md` |
 | `scripts/visdic2lmf.py` | makes the WN-LMF lexicon from a source file |
-| `additions/` | words added in 2025 while annotating *War with the Newts*, not yet part of a release |
-| `tests/` | tests of the conversion |
+| `release.py` | makes the next release: the last release plus the changes |
+| `changes/` | the changes since 2.1, one record per line; see `changes/README.md` |
+| `scripts/ntumc2changes.py` | one-off: made the first change records from the NTU-MC wordnet database |
+| `additions/` | words added in 2025 while annotating *War with the Newts*; now change records |
+| `tests/` | tests of the conversion and of the release |
 
 The three versions come from the same base and each adds different
 synsets.  Release 2.1 is made from `wncze21.xml.zip`, the latest
@@ -144,11 +147,25 @@ Three things are added, and each is marked in the synset's note:
   for *uživatel* 'user').
 * 33 synsets with a Princeton 2.0 id have no Interlingual Index id.
 
+## After 2.1
+
+From 2.1 on the lexicon is kept as the released file plus an ordered
+list of changes, as for the Japanese, Chinese and Malay/Indonesian
+wordnets of NTU-MC:
+
+```
+uv run release.py 2.2     # -> release/wncze-2.2.xml, release/wncze-2.2.tar.xz
+```
+
+The first changes bring in the words, definitions and examples added
+to Czech in the NTU-MC wordnet: 927 senses, 564 synsets, 13 definitions
+and 110 examples.  They are not released yet.  See `changes/README.md`.
+
 ## Tests
 
 ```
 uv run --group dev pytest
-uv run --group dev ruff check scripts/visdic2lmf.py tests
+uv run --group dev ruff check .
 ```
 
 ## References

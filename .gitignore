@@ -8,3 +8,4 @@ __pycache__/
 /release/
 # written by the tests
 /tests/output/
+/build/

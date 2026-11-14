@@ -1,0 +1,14 @@
+action	ntumc_synset	text	new	user	why_no_record
+remove_sense	02649830-v	zaujmout		s181	the release has no such sense
+add_sense	07710616-n	brambor			no record needed: already in wncze-07238933-n
+add_sense	00158309-r	zrovna (tak)		s49	the lemma holds a comment
+add_sense	01551633-n	mnoho		test_user	the concept is not in CILI, omw-ntumc or omw-pronoun
+add_sense	80002470-v	nemože(dialectical form)		s72	the lemma holds a comment
+add_sense	80002490-z	nazdar (informal, usually among friends)		s73	the lemma holds a comment
+set_definition	02794670-a	(doesn't have nominative case)		s109	a note, not a definition
+set_definition	77000104-n	Kdy chceš jít spát		s109	an example, not a definition
+set_definition	80001788-v	to be able to do something		s72	in English
+add_example	80001788-v	Když mně dáš dobrou loď , tak se jí nemože nic stát\ / -used in some dialects		s72	the example holds a comment
+add_example	80002470-v	Když mně dáš loď, tak jí nemože nic stát		s72	no Czech word was added for the concept
+add_example	80002490-z	Nazdar, hoši		s73	no Czech word was added for the concept
+add_example	80002576-a	nasypal si tabákovou drť do fajfky		s109	no Czech word was added for the concept
