@@ -40,6 +40,7 @@ BASE = "wncze-2.1"
 BASE_XML = ROOT / "build" / "base" / f"{BASE}.xml"
 CHANGES = ROOT / "changes" / f"{BASE}.jsonl"
 REVIEW = ROOT / "changes" / "review-2.1.tsv"
+HELD = ROOT / "changes" / "held-2.1.tsv"
 ADDITIONS = ROOT / "additions" / "2025-04"
 MAP30 = ROOT.parent / "cili" / "ili-map-pwn30.tab"
 MAP20 = ROOT.parent / "cili" / "older-wn-mappings" / "ili-map-pwn20.tab"
@@ -382,7 +383,7 @@ def texts(con: sqlite3.Connection, w: Writer) -> None:
             w.add("set_definition", (user, "2025-04-06" if user == "fcbond" else "", src,
                                      "Czech definition"), synset=here, new=text.strip())
             continue
-        w.review.append(("set_definition", synset, text, "", user, problem))
+        w.review.append(("set_definition", synset, " ".join(text.split()), "", user, problem))
     seen: set[tuple[str, str]] = set()
     for synset, user, text in con.execute(
             "SELECT synset, usr, def FROM synset_ex WHERE lang = 'ces' ORDER BY synset, sid"):
@@ -400,7 +401,40 @@ def texts(con: sqlite3.Connection, w: Writer) -> None:
             w.add("add_example", (user, "", f"{FROZEN}: annotator {user}", "Czech example"),
                   synset=here, new=text.strip())
             continue
-        w.review.append(("add_example", synset, text.replace("\n", " / "), "", user, problem))
+        w.review.append(("add_example", synset, " / ".join(text.split()), "", user, problem))
+
+
+def hold(records: list[changes.Change]) -> list[changes.Change]:
+    """Take out the records that are held for a person, and what hangs on them.
+
+    Two reviewers read every record that has Czech in it; a record that
+    either of them questioned is in changes/held-2.1.tsv until a person
+    has ruled ``add`` in its ``ruling`` column.  A synset that is left
+    without a word is not added, and its definition and examples wait
+    with it.
+
+    Args:
+        records: all the records
+
+    Returns:
+        The records that go in the log, numbered again
+    """
+    if not HELD.exists():
+        return records
+    held = {(r["action"], r["synset"], r["lemma"], r["text"]) for r in _tsv(HELD)
+            if r["ruling"] != "add"}
+    kept = [c for c in records
+            if (c.action, c.synset, c.lemma or "", (c.new or "") if c.lemma is None else "")
+            not in held and not (c.action == "rename_lemma"
+                                 and (c.action, c.synset, c.lemma, "") in held)]
+    worded = {c.synset for c in kept if c.action == "add_sense"}
+    empty = {c.synset for c in kept if c.action == "add_synset"} - worded
+    out = [c for c in kept if c.synset not in empty]
+    for k, c in enumerate(out, 1):
+        c.id = f"{BASE}-{k}"
+    log.info("%d records held for a person; %d more wait for their synset",
+             len(records) - len(kept), len(kept) - len(out))
+    return out
 
 
 def main() -> None:
@@ -418,13 +452,14 @@ def main() -> None:
     con = sqlite3.connect(f"file:{args.db}?mode=ro", uri=True)
     additions(con, w, corrections(con, w))
     texts(con, w)
-    changes.write(CHANGES, w.records)
+    records = hold(w.records)
+    changes.write(CHANGES, records)
     with REVIEW.open("w", encoding="utf-8", newline="") as f:
-        out = csv.writer(f, delimiter="\t", quoting=csv.QUOTE_NONE, escapechar="\\")
+        out = csv.writer(f, delimiter="\t", quoting=csv.QUOTE_NONE, quotechar=None)
         out.writerow(("action", "ntumc_synset", "text", "new", "user", "why_no_record"))
         out.writerows(w.review)
     log.info("Wrote %d records to %s and %d lines to %s",
-             len(w.records), CHANGES, len(w.review), REVIEW)
+             len(records), CHANGES, len(w.review), REVIEW)
 
 
 if __name__ == "__main__":

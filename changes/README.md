@@ -56,7 +56,7 @@ omw-pronoun.
 
 ## The first log (2026-11-14)
 
-`wncze-2.1.jsonl` starts with the 1,620 changes that bring in what was
+`wncze-2.1.jsonl` starts with the 1,412 changes that bring in what was
 added to Czech in the NTU-MC wordnet database since it was loaded from
 the Czech WordNet in April 2024.  They were made by
 `scripts/ntumc2changes.py` from the database frozen on 2026-11-13.
@@ -65,27 +65,47 @@ here through its ILI.
 
 | records | action | from |
 |---:|---|---|
-| 2 | `remove_sense` | released senses that annotators removed |
+| 1 | `remove_sense` | a released sense that an annotator removed |
 | 2 | `rename_lemma` | released senses that annotators corrected |
-| 564 | `add_synset` | concepts the Czech WordNet did not have: 375 by their 2.0 id, 8 by their 3.0 id, 147 from omw-ntumc, 34 pronoun concepts |
+| 508 | `add_synset` | concepts the Czech WordNet did not have: 350 by their 2.0 id, 8 by their 3.0 id, 117 from omw-ntumc, 33 pronoun concepts |
 | 2 | `set_identifier` | existing synsets that are pronoun concepts |
-| 590 | `add_sense` | NTU-MC annotators |
-| 304 | `add_sense` | `additions/2025-04/arasaac.tab` |
+| 502 | `add_sense` | NTU-MC annotators |
+| 280 | `add_sense` | `additions/2025-04/arasaac.tab` |
 | 10 | `add_sense` | `additions/2025-04/pronouns-quick.tab` |
-| 23 | `add_sense` | loaded with those files (source `sem`) but not in them |
-| 7 | `set_definition` | `additions/2025-04/pronouns.tab` |
-| 6 | `set_definition` | NTU-MC annotators |
-| 110 | `add_example` | NTU-MC annotators |
+| 21 | `add_sense` | loaded with those files (source `sem`) but not in them |
+| 4 | `set_definition` | `additions/2025-04/pronouns.tab` |
+| 82 | `add_example` | NTU-MC annotators |
 
 The user of a record is the account that first entered the sense in
 NTU-MC (`s109`), and its date the day it was entered.  The senses from
 `additions/2025-04/` were loaded by a test account; their user is
-`fcbond`, who made the files, and the source names the file.  139
+`fcbond`, who made the files, and the source names the file.  103
 records have no date: the database does not date definitions and
 examples.
 
-Applied to 2.1 they give 34,800 words, 48,431 senses and 29,034 synsets
+Applied to 2.1 they give 34,727 words, 48,318 senses and 28,978 synsets
 (2.1: 34,089, 47,506 and 28,470), with no conflicts.
+
+### Held for a person
+
+Two reviewers (Claude Sonnet 5.5, 2026-11-15, each working alone) read
+every record with Czech in it: 927 senses, 110 examples, 13 definitions
+and 4 corrections.  Each saw the Czech word, the English words and
+definition of the concept, and the Czech words already in the synset,
+and answered ok, doubt or wrong.  They agreed that 924 are ok.
+
+The other 130 are **not in the log**.  They are in `held-2.1.tsv`, with
+both answers and reasons, until a person who knows Czech has ruled:
+114 senses, 8 definitions, 7 examples and 1 removal.  A model's doubt
+is not a reason to drop what a person added, and reviewers are known to
+question words that are fine (a looser or narrower word, a derived
+form), so nothing is rejected yet.  Because of them, 56 synsets are not
+added, and 21 examples and 1 definition wait for their synset.
+
+To rule, write `add` or `drop` in the `ruling` column.  While the log
+holds only these first records, `scripts/ntumc2changes.py` can make it
+again, and then includes the rows ruled `add`.  Once the log has other
+records, an accepted row is added as a new record at the end.
 
 ### Not turned into records
 
@@ -116,4 +136,4 @@ Also waiting:
   (`omw-pronoun-cs`); the words could live only there.
 * *kde* and *kam* are both on `pronoun:Plc;Int`; omw-pronoun tells
   place from goal.
-* The 383 synsets added for Princeton concepts have no relations.
+* The 358 synsets added for Princeton concepts have no relations.

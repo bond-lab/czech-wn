@@ -158,8 +158,9 @@ uv run release.py 2.2     # -> release/wncze-2.2.xml, release/wncze-2.2.tar.xz
 ```
 
 The first changes bring in the words, definitions and examples added
-to Czech in the NTU-MC wordnet: 927 senses, 564 synsets, 13 definitions
-and 110 examples.  They are not released yet.  See `changes/README.md`.
+to Czech in the NTU-MC wordnet: 813 senses, 508 synsets, 4 definitions
+and 82 examples.  Another 130 additions are held until a Czech speaker
+has looked at them.  Nothing is released yet.  See `changes/README.md`.
 
 ## Tests
 
