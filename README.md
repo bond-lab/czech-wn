@@ -1,5 +1,7 @@
 # Czech WordNet
 
+[![DOI](https://zenodo.org/badge/960630050.svg)](https://doi.org/10.5281/zenodo.24256732)
+
 The Czech WordNet is a lexical database of Czech.  Nouns, verbs,
 adjectives and adverbs are grouped into sets of synonyms (synsets),
 each standing for one concept, and the synsets are linked by semantic
