@@ -203,6 +203,26 @@ The source lists a word twice in three synsets (*ulevit*,
 Three `remove_sense` records, each naming one sense by its id
 (`sense`), take the second away.
 
+## Two verbs (2026-11-15)
+
+The source gives two verb synsets another part of speech:
+`wncze-00660033-v` (*cenzurovat*) is a noun and `wncze-00663238-v`
+(*odmítnout účast*) an adverb, each under a verb.  A `set_pos` record
+makes each a verb, and its word with it.
+
+## Counts from the corpus (2026-11-15)
+
+The NTU-MC Czech corpus is Karel Čapek's *Válka s mloky*, tagged with
+concepts by students at Palacký University.  1,736 `set_count` records
+(`scripts/corpus_counts.py`, from the corpus frozen on 2026-11-13) give
+how often each sense is tagged: 5,744 tags in all, as
+`<Count dc:source="NTU-MC">`.
+
+287 tags are for a sense the wordnet does not have and are not counted:
+131 for a synset that is not here and 155 for a word that is not in the
+synset (most are among the held additions), and 1 for a concept in no
+registry.
+
 ## Validation
 
 After writing the XML, `release.py` checks it against the WN-LMF DTD
@@ -210,9 +230,8 @@ and runs the validation of the `wn` module (NTU-MC
 `ntumc.wordnet.validate`).  An error stops the release, and so do an
 ILI on two synsets (`W302`), a word twice in a synset (`W202`) and two
 entries for one word in a synset (`W203`).  The other warnings are
-counted in the log: 25 empty synsets, 35 repeated definitions, 2
-hypernyms of another part of speech, and 9,165 relations with no
-reverse (the source has `hypernym` and `holo_part` one way only).
+counted in the log: 25 empty synsets, 35 repeated definitions and
+9,165 relations with no reverse (the source has `hypernym` and `holo_part` one way only).
 
 ## To decide
 

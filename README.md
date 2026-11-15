@@ -169,7 +169,8 @@ has looked at them.  The new synsets that are Princeton concepts are
 then linked to the rest as Princeton WordNet 3.0 links them
 (`scripts/princeton_links.py`): 381 relations.  No ILI is on
 two synsets any more (`changes/shared-ili-2.1.tsv`), and no word is
-twice in a synset; `release.py` now runs the validation of `wn` and
+twice in a synset.  1,736 senses have their count in the NTU-MC Czech
+corpus (`scripts/corpus_counts.py`).  `release.py` now runs the validation of `wn` and
 stops for either.  Nothing is released
 yet.  See `changes/README.md`.
 
