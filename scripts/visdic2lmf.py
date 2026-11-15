@@ -8,7 +8,7 @@ Writes release/wncze-2.1.xml and, with --package, release/wncze-2.1.tar.xz
 wants it).
 
 Every field of the source has a place in the output (the table is in
-README.md).  After converting, the source is rebuilt from the output and
+notes/conversion.md).  After converting, the source is rebuilt from the output and
 compared with the original, fact by fact; the script fails if anything
 differs.  Only three things are not carried over, and they are counted:
 elements and attributes with no content, white space around a value,
