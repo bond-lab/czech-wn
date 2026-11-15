@@ -3,6 +3,17 @@
 The major changes in each release.  Every change since 2.1 is a record
 in `changes/`; see `changes/README.md` for the details.
 
+## 2.3 (not yet released)
+
+### Added
+
+* English definitions, from Princeton WordNet 2.0, for 75 synsets that
+  have no ILI and had no definition.
+
+### Fixed
+
+* Six synsets get the ILI of their Princeton 3.0 concept.
+
 ## 2.2 (2026-11-15)
 
 34,662 words, 48,302 senses, 28,977 synsets.

@@ -24,6 +24,15 @@ history.  `wncze-2.1.jsonl` holds the 6,266 changes that made 2.2 from
   *španělská omáčka*, *cappucinno*, *mnohem více*, *andezit*).  The
   map from 2.0 missed them, mostly because 2.0 misspells the English
   word.  See issue 8.
+* 75 more Princeton 2.0 synsets with no ILI and no definition get the
+  English definition Princeton WordNet 2.0 gives them
+  (`set_definition`, language `en`): the 49 that lost a wrong ILI in
+  2.2 and 26 that never had one, such as *amorální* "without moral
+  standards or principles" and *upocený* "being wet with perspiration".
+  Without a definition nothing says what such a synset means, and
+  Cygnet drops it.  Most are adjectives that Princeton 3.0 no longer
+  has (english-wordnet issue 1465); when a synset gets an ILI, the
+  English definition can go.
 
 ## A change record
 
