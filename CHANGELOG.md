@@ -5,7 +5,7 @@ in `changes/`; see `changes/README.md` for the details.
 
 ## 2.2 (not yet released)
 
-34,720 words, 48,317 senses, 28,977 synsets.
+34,662 words, 48,302 senses, 28,977 synsets.
 
 ### Added
 
@@ -25,10 +25,13 @@ in `changes/`; see `changes/README.md` for the details.
   Princeton WordNet 2.0.  18 synsets get the right ILI, 50 lose a wrong
   one, and the two synsets for *kalhoty* are merged.
 * A word is in a synset once: three were there twice.
-* Two verb synsets that the source marks as a noun and an adverb are
-  verbs.
-* 13 lemmas that held a sense number, punctuation or two words
-  (*topit-2*, *téct, téci*) are cleaned.
+* Four synsets have the part of speech of their concept; the source
+  had another.
+* Lemmas are words: a sense number, punctuation or a second word in
+  the lemma is gone (13 lemmas); a note in brackets (*zmar (plánů)*,
+  *medicína (hovor.)*) is now a note on the sense (64); and a
+  description listed as a word is now the definition of its synset
+  (15).
 
 ### Changed
 

@@ -272,8 +272,30 @@ lemmas of the source: a sense number in the lemma (*topit-2*, *požít
 #2*, *věda o smrti:1*; seven), punctuation at its end (*porušení
 zákona,*; two), and two words written as one (*téct, téci*; *přitékat,
 přitéci*; *vtékat, vtéci*, where the second becomes a sense of its own;
-*pleva, plevy*).  About 100 lemmas still hold a note in brackets
-(*zmar (plánů)*, *přejít (na co)*) or are a definition, not a word.
+*pleva, plevy*).
+
+**Notes and definitions in lemmas.**  `lemma-notes-2.1.tsv` lists the
+111 senses whose lemma has brackets or is a description, and what was
+done with each:
+
+* 64 have a note in brackets after the word: what it is said of (*zmar
+  (plánů)*, *ouško (jehly)*), its complement (*přejít (na co)*) or its
+  register (*medicína (hovor.)*, *vajgl( slang)*).  The note goes on
+  the sense (`set_note`, added to a note the sense already has) and the
+  lemma is the word alone (`rename_lemma`).
+* 15 are a description beside the real word of the synset (*látka
+  snižující hladinu cukru v krvi* beside *antidiabetikum*).  The
+  description becomes the definition of the synset, which had none
+  (`set_definition`; three misprints corrected), and is no longer a
+  word of it (`remove_sense`).
+* 32 are left as they are, for a Czech speaker (issue 6): a word in
+  brackets that may be part of the term (*(houpací) síť*), a variant
+  (*tromb(us)*), or a description that is the only word of its synset.
+
+**Two more parts of speech.**  `wncze-10676415-n` (*vliv*, *účinek*)
+was an adjective in the source and `wncze-00236555-a` a noun; each has
+a `set_pos` record.  The only word of the second is *testik*, which
+looks like a test entry (issue 6).
 
 ## Validation
 
