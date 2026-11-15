@@ -28,6 +28,8 @@ in `changes/`; see `changes/README.md` for the details.
 
 ### Changed
 
+* A verb frame that names verbs of its synset is on those verbs only,
+  not on every verb of the synset (887 senses).
 * The lexicon is now the last release and an ordered log of changes
   (`release.py`), not a conversion of the DEBVisDic source.
 * A release must pass the validation of the `wn` module.

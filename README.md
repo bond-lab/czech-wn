@@ -37,8 +37,9 @@ in this repository.
   file, `sources/nas_anotacni_slovnik.xml`, has a different licence
 
 The wordnet is released in
-[WN-LMF](https://globalwordnet.github.io/schemas/), the format of the
-Global WordNet Association, so that it can be used with the
+[WN-LMF](https://globalwordnet.github.io/schemas/) (WordNet Lexical
+Markup Framework), the XML format of the Global WordNet Association, so
+that it can be used with the
 [wn](https://github.com/goodmami/wn) module and edited together with
 other wordnets:
 
@@ -66,7 +67,9 @@ BibTeX is in `citation.bib`; more references are in
   `notes/conversion.md`.
 * **Later releases** are the last release and an ordered log of changes
   (`changes/`), as for the Japanese, Chinese and Malay/Indonesian
-  wordnets of NTU-MC.  `CHANGELOG.md` has the major changes of each
+  wordnets of [NTU-MC](https://github.com/bond-lab/NTUMC), the Nanyang
+  Technological University Multilingual Corpus, a sense-tagged corpus
+  with its own wordnets.  `CHANGELOG.md` has the major changes of each
   release, and `changes/README.md` the details.
 
 Synsets are identified by their Princeton WordNet 2.0 synset
@@ -84,9 +87,9 @@ licences: <https://live.european-language-grid.eu/catalogue/lcr/2364>.
 | `changes/` | the changes since 2.1, one record per line; see `changes/README.md` |
 | `release.py` | makes the next release: the last release plus the changes |
 | `sources/` | the files as Masaryk University gave them to us: three versions of the Czech WordNet, and the PDT annotation dictionary, which has **a different licence**; see `sources/README.md` |
-| `notes/` | how 2.1 was converted (`conversion.md`); references (`references.md`) |
+| `notes/` | how 2.1 was converted (`conversion.md`); the verb frames (`verb-frames.md`); references (`references.md`) |
 | `scripts/visdic2lmf.py` | made release 2.1 from the source |
-| `scripts/` | the scripts that made change records: from the NTU-MC wordnet (`ntumc2changes.py`), from Princeton WordNet (`princeton_links.py`) and from the NTU-MC Czech corpus (`corpus_counts.py`) |
+| `scripts/` | the scripts that made change records: from the NTU-MC wordnet (`ntumc2changes.py`), from Princeton WordNet (`princeton_links.py`), from the NTU-MC Czech corpus (`corpus_counts.py`) and from the verbs the frames name (`frames_to_senses.py`) |
 | `additions/` | words added in 2025 while annotating *War with the Newts*; now change records |
 | `tests/` | tests of the conversion and of the release |
 

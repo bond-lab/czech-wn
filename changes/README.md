@@ -223,6 +223,13 @@ how often each sense is tagged: 5,744 tags in all, as
 synset (most are among the held additions), and 1 for a concept in no
 registry.
 
+## Frames on the verbs they name (2026-11-15)
+
+In 2.1 every verb of a synset names all the synset's frames.  887
+`set_frames` records (`scripts/frames_to_senses.py`) leave a frame that
+begins with verbs of its synset on those verbs only.  See
+`notes/verb-frames.md`.
+
 ## Validation
 
 After writing the XML, `release.py` checks it against the WN-LMF DTD

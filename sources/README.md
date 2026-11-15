@@ -36,8 +36,10 @@ base; each adds different synsets.
   linguistics thesis at the University of Naples (200 new synsets, with
   definitions and examples).
 
-The verb frames (`VALENCY`) probably come from VerbaLex:
-<http://hdl.handle.net/11234/1-2824>.
+The verb frames (`VALENCY`) are described in `notes/verb-frames.md`.
+They were written for the Czech WordNet in the BalkaNet project; the
+VerbaLex valency lexicon (<http://hdl.handle.net/11234/1-2824>) was
+later built from them and other lexicons.
 
 ## PDT annotation dictionary (a different licence)
 
