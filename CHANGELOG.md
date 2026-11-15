@@ -3,7 +3,7 @@
 The major changes in each release.  Every change since 2.1 is a record
 in `changes/`; see `changes/README.md` for the details.
 
-## 2.2 (not yet released)
+## 2.2 (2026-11-15)
 
 34,662 words, 48,302 senses, 28,977 synsets.
 

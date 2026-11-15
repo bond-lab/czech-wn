@@ -5,19 +5,20 @@ adjectives and adverbs are grouped into sets of synonyms (synsets),
 each standing for one concept, and the synsets are linked by semantic
 relations such as hypernymy, meronymy and antonymy.  Almost all synsets
 are linked to Princeton WordNet and, through the Interlingual Index, to
-wordnets of other languages; 254 are concepts that Princeton WordNet
-does not have.  Some synsets have a definition, examples, or verb
-valency frames.
+wordnets of other languages; about 400 are concepts that Princeton
+WordNet does not have.  Some synsets have a definition, examples, or
+verb valency frames.
 
-| release 2.1 | nouns | verbs | adjectives | adverbs | all |
-|---|---:|---:|---:|---:|---:|
-| words | 25,144 | 6,665 | 2,063 | 217 | 34,089 |
-| senses | 33,423 | 10,588 | 3,236 | 259 | 47,506 |
-| synsets | 21,016 | 5,159 | 2,129 | 166 | 28,470 |
+| release 2.2 | nouns | verbs | adjectives | adverbs | other | all |
+|---|---:|---:|---:|---:|---:|---:|
+| words | 25,284 | 6,728 | 2,243 | 389 | 18 | 34,662 |
+| senses | 33,614 | 10,733 | 3,465 | 469 | 21 | 48,302 |
+| synsets | 21,144 | 5,211 | 2,288 | 322 | 12 | 28,977 |
 
-There are 34,257 relations between synsets, 949 definitions, 132
-examples and 1,341 verb frames; 28,181 synsets are linked to the
-Interlingual Index.
+There are 34,831 relations between synsets, 968 definitions, 1,459
+examples and 1,341 verb frames; 28,491 synsets are linked to the
+Interlingual Index, and 1,736 senses have their count in a tagged
+corpus.  The other words are pronouns and the like.
 
 The Czech WordNet was created by the **Natural Language Processing
 Centre, Faculty of Informatics, Masaryk University, Brno** (Karel
@@ -45,7 +46,7 @@ other wordnets:
 
 ```python
 import wn
-wn.download("https://github.com/bond-lab/czech-wn/releases/download/v2.1/wncze-2.1.tar.xz")
+wn.download("https://github.com/bond-lab/czech-wn/releases/download/v2.2/wncze-2.2.tar.xz")
 wn.synsets("pes", lexicon="wncze")
 ```
 
@@ -70,7 +71,11 @@ BibTeX is in `citation.bib`; more references are in
   synsets) converted to WN-LMF with nothing changed.  How each field
   was converted, and the check that nothing was lost, are in
   `notes/conversion.md`.
-* **Later releases** are the last release and an ordered log of changes
+* **2.2** adds the words, examples and definitions made while tagging
+  Karel Čapek's *Válka s mloky* in NTU-MC, examples from the verb
+  frames, relations from Princeton WordNet and sense counts, and
+  corrects errors of the source.
+* **From 2.2 on** a release is the last release and an ordered log of changes
   (`changes/`), as for the Japanese, Chinese and Malay/Indonesian
   wordnets of [NTU-MC](https://github.com/bond-lab/NTUMC), the Nanyang
   Technological University Multilingual Corpus, a sense-tagged corpus
