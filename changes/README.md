@@ -247,6 +247,34 @@ show a verb of the synset.  The 96 examples of frames that name only
 verbs their synset does not have are left out.  See
 `notes/verb-frames.md`.
 
+## Before the release (2026-11-15)
+
+**Relations between synsets of 2.1.**  `scripts/princeton_links.py
+--all` does for every synset with an ILI what it did for the new ones:
+269 `add_relation` records for relations that Princeton WordNet 3.0 has
+between two concepts of the Czech WordNet and the Czech WordNet lacked
+(73 `similar`, 55 `domain_topic`, 38 `hypernym`, 34 `holo_part`, 32
+`also`, 30 `antonym`, 7 others).  A synset that has a hypernym keeps
+it: Princeton gives another to 410, and they are not changed.
+Princeton's `entails` is `subevent` here, and none was missing.
+
+**Region links: be careful.**  Princeton's `domain_region` is right for
+its concept, but a Czech synset on that ILI often has a general word.
+Of the 22 added for new synsets, 8 are taken out again by
+`remove_relation` records: *hostinský* is not of the United Kingdom,
+nor *poslanec*, *legionář*, *obec*, *stav*, *trikolora* and *vtipné
+rčení* of France or Italy.  The 14 that stay are things of a place
+(*suši*, *karate*, *francouzština*).  The script no longer copies
+region links: each needs a person to look at the Czech words.
+
+**Lemmas.**  16 `rename_lemma` and 3 `add_sense` records clean 13
+lemmas of the source: a sense number in the lemma (*topit-2*, *požít
+#2*, *věda o smrti:1*; seven), punctuation at its end (*porušení
+zákona,*; two), and two words written as one (*téct, téci*; *přitékat,
+přitéci*; *vtékat, vtéci*, where the second becomes a sense of its own;
+*pleva, plevy*).  About 100 lemmas still hold a note in brackets
+(*zmar (plánů)*, *přejít (na co)*) or are a definition, not a word.
+
 ## Validation
 
 After writing the XML, `release.py` checks it against the WN-LMF DTD
@@ -254,8 +282,9 @@ and runs the validation of the `wn` module (NTU-MC
 `ntumc.wordnet.validate`).  An error stops the release, and so do an
 ILI on two synsets (`W302`), a word twice in a synset (`W202`) and two
 entries for one word in a synset (`W203`).  The other warnings are
-counted in the log: 25 empty synsets, 35 repeated definitions and
-9,165 relations with no reverse (the source has `hypernym` and `holo_part` one way only).
+counted in the log: 25 empty synsets, 35 repeated definitions, one
+hypernym of another part of speech and about 9,200 relations with no
+reverse (the source has `hypernym` and `holo_part` one way only).
 
 ## To decide
 

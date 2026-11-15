@@ -3,13 +3,15 @@
 
     uv run scripts/princeton_links.py            # say what would be added
     uv run scripts/princeton_links.py --write    # add the records to the log
+    uv run scripts/princeton_links.py --all      # for every synset, not only the new
 
 A synset added for a Princeton concept (changes/README.md) comes with
 its ILI and no relations.  This finds, in Princeton WordNet 3.0, each
 relation between such a concept and another concept the Czech WordNet
 has, and adds it as an ``add_relation`` record at the end of the change
 log.  A relation that is already there is left alone, so the script can
-be run again after more synsets are added.
+be run again after more synsets are added.  With ``--all`` it does the
+same for every synset that has an ILI.
 
 The relations are written the way release 2.1 has them:
 
@@ -18,12 +20,18 @@ The relations are written the way release 2.1 has them:
   member), so a Princeton ``hyponym`` becomes the other synset's
   ``hypernym``;
 * antonymy between synsets, though Princeton has it between words;
+* Princeton's ``entails`` as ``subevent``, as 2.1 has it;
 * nothing for derivation and pertainym: they hold between English words;
 * nothing for usage (``exemplifies``): that an English word is colloquial
-  or archaic says nothing about the Czech one.
+  or archaic says nothing about the Czech one;
+* nothing for region (``domain_region``).  BE CAREFUL with these: the
+  link is right for the Princeton concept (a *publican* is British, a
+  *deputy* French), but a Czech synset on that ILI often has a general
+  word (*hostinský*, *poslanec*), and the region would be wrong for it.
+  A region link needs a person to look at the Czech words.
 
-A synset of release 2.1 that has a hypernym keeps it: where Princeton
-gives it another, through a new synset, that is listed and not added.
+A synset that has a hypernym keeps it: where Princeton gives it
+another, that is counted and not added.
 
 Princeton WordNet is read with wn (``omw-en:1.4``, which must be
 downloaded: ``uv run python -m wn download omw-en:1.4``).
@@ -53,13 +61,13 @@ USER = "fcbond"
 
 # Princeton relation -> the relation here, from the same synset
 KEEP = {"hypernym", "instance_hypernym", "holo_part", "holo_member", "holo_substance",
-        "antonym", "similar", "also", "attribute", "causes", "entails",
-        "domain_topic", "domain_region"}
+        "antonym", "similar", "also", "attribute", "causes", "subevent", "domain_topic"}
+# Princeton relation -> what 2.1 calls it
+RENAME = {"entails": "subevent"}
 # Princeton relation -> the relation here, from the other synset
 TURN = {"hyponym": "hypernym", "instance_hyponym": "instance_hypernym",
         "mero_part": "holo_part", "mero_member": "holo_member",
-        "mero_substance": "holo_substance", "has_domain_topic": "domain_topic",
-        "has_domain_region": "domain_region"}
+        "mero_substance": "holo_substance", "has_domain_topic": "domain_topic"}
 # relations Princeton has between words that 2.1 has between synsets
 FROM_SENSES = {"antonym", "also", "similar"}
 
@@ -108,8 +116,8 @@ def links(relations: Iterable[Triple], items: Iterable[Item],
 
     Returns:
         The relations to add, and the hypernyms left out because the
-        synset, one that is not new, has a hypernym already; each is
-        synset, relation and target as this lexicon writes them, sorted
+        synset has a hypernym already; each is synset, relation and
+        target as this lexicon writes them, sorted
     """
     by_ili: dict[str, list[Synset]] = defaultdict(list)
     for item in items:
@@ -117,7 +125,10 @@ def links(relations: Iterable[Triple], items: Iterable[Item],
             by_ili[str(item.ili)].append(item)
     found: set[Triple] = set()
     left: set[Triple] = set()
+    hyponyms = {str(i.id) for i in items if isinstance(i, Synset)
+                and any(r.link in HYPERNYMS for r in i.relations)}
     for a, link, b in relations:
+        link = RENAME.get(link, link)
         if link in TURN:
             a, link, b = b, TURN[link], a
         elif link not in KEEP:
@@ -130,8 +141,7 @@ def links(relations: Iterable[Triple], items: Iterable[Item],
         if any(r.link == link and r.target == target.id for r in source.relations):
             continue
         triple = (str(source.id), link, str(target.id))
-        if (link in HYPERNYMS and source.id not in new
-                and any(r.link in HYPERNYMS for r in source.relations)):
+        if link in HYPERNYMS and source.id in hyponyms:
             left.add(triple)
         else:
             found.add(triple)
@@ -161,6 +171,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--write", action="store_true",
                         help="add the records to the change log")
+    parser.add_argument("--all", action="store_true",
+                        help="link every synset that has an ILI, not only the new ones")
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     release.fetch_base()
@@ -171,13 +183,14 @@ def main() -> None:
         for line in conflicts:
             log.error(line)
         sys.exit(1)
-    new = {str(i.id) for i in items if isinstance(i, Synset) and i.ili and i.id not in old}
+    new = {str(i.id) for i in items
+           if isinstance(i, Synset) and i.ili and (args.all or i.id not in old)}
     found, left = links(princeton(), items, new)
-    for synset, link, target in left:
-        log.warning("%s has a hypernym: no %s to %s", synset, link, target)
+    log.info("%d hypernyms not added: the synset has a hypernym", len(left))
     linked = {s for s, _, t in found for s in (s, t)} & new
-    log.info("%d relations for %d of the %d synsets added for Princeton concepts",
-             len(found), len(linked), len(new))
+    log.info("%d relations for %d of the %d synsets%s",
+             len(found), len(linked), len(new),
+             "" if args.all else " added for Princeton concepts")
     if not args.write:
         for synset, link, target in found:
             sys.stdout.write(f"{synset}\t{link}\t{target}\n")

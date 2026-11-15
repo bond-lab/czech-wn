@@ -5,15 +5,15 @@ in `changes/`; see `changes/README.md` for the details.
 
 ## 2.2 (not yet released)
 
-34,726 words, 48,314 senses, 28,977 synsets.
+34,720 words, 48,317 senses, 28,977 synsets.
 
 ### Added
 
 * 813 senses, 82 examples and 4 definitions added to Czech in the
   NTU-MC wordnet (2024-2025), most by students at Palacký University
   tagging Karel Čapek's *Válka s mloky*, with 508 new synsets for them.
-* 375 relations that link the new synsets to the rest, from Princeton
-  WordNet 3.0.
+* 636 relations from Princeton WordNet 3.0: 367 that link the new
+  synsets to the rest, and 269 between synsets of 2.1 that lacked them.
 * 1,243 examples for 793 verb synsets, from the examples in their verb
   frames.
 * Counts for 1,736 senses: how often each is tagged in the NTU-MC Czech
@@ -27,6 +27,8 @@ in `changes/`; see `changes/README.md` for the details.
 * A word is in a synset once: three were there twice.
 * Two verb synsets that the source marks as a noun and an adverb are
   verbs.
+* 13 lemmas that held a sense number, punctuation or two words
+  (*topit-2*, *téct, téci*) are cleaned.
 
 ### Changed
 

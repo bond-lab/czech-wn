@@ -91,3 +91,32 @@ def test_links_does_not_copy_usage_labels():
     # Assert
     assert found == []
     assert left == []
+
+
+def test_links_writes_entailment_as_subevent_and_leaves_region_out():
+    # Arrange
+    relations = [("i3", "entails", "i1"), ("i3", "domain_region", "i4"),
+                 ("i4", "has_domain_region", "i3")]
+
+    # Act
+    found, left = p.links(relations, lexicon(), {"wncze-3-n"})
+
+    # Assert
+    assert found == [("wncze-3-n", "subevent", "wncze-1-n")]
+    assert left == []
+
+
+def test_links_keeps_the_hypernym_a_synset_has_even_when_all_are_linked():
+    # Arrange
+    relations = [("i2", "hypernym", "i4"), ("i2", "instance_hypernym", "i3"),
+                 ("i3", "hypernym", "i1"), ("i3", "hypernym", "i4")]
+    everything = {"wncze-1-n", "wncze-2-n", "wncze-3-n", "wncze-4-n"}
+
+    # Act
+    found, left = p.links(relations, lexicon(), everything)
+
+    # Assert
+    assert found == [("wncze-3-n", "hypernym", "wncze-1-n"),
+                     ("wncze-3-n", "hypernym", "wncze-4-n")]
+    assert left == [("wncze-2-n", "hypernym", "wncze-4-n"),
+                    ("wncze-2-n", "instance_hypernym", "wncze-3-n")]
