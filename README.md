@@ -86,6 +86,11 @@ BibTeX for both is in `citation.bib`; more references are in
   Karel Čapek's *Válka s mloky* in NTU-MC, examples from the verb
   frames, relations from Princeton WordNet and sense counts, and
   corrects errors of the source.
+* **From 2.3** there are two lexicons: `wncze`, for the `wn` module, and
+  `wncze-min`, which leaves the definitions and relations of concepts
+  shared with other wordnets to
+  [omw-ntumc](https://github.com/bond-lab/omw-ntumc) and is what
+  [Cygnet](https://github.com/omwn/cygnet) loads.
 * **From 2.2 on** a release is the last release and an ordered log of changes
   (`changes/`), as for the Japanese, Chinese and Malay/Indonesian
   wordnets of [NTU-MC](https://github.com/bond-lab/NTUMC), the Nanyang
@@ -117,13 +122,14 @@ licences: <https://live.european-language-grid.eu/catalogue/lcr/2364>.
 ## Making a release
 
 ```
-uv run release.py 2.3     # -> release/wncze-2.3.xml, release/wncze-2.3.tar.xz
+uv run release.py 2.3     # -> release/wncze-2.3.tar.xz, release/wncze-min-2.3.tar.xz
 ```
 
 It downloads the last release once and checks it, applies the changes,
-and checks the result against the WN-LMF DTD and with the validation of
-`wn`.  It needs `NTUMC` checked out beside this repository (and
-`schemas`, for the DTD).
+writes the minimal lexicon and the export, and checks both against the
+WN-LMF DTD and with the validation of `wn`.  It needs `NTUMC` and
+`omw-ntumc` (built at the pinned version) checked out beside this
+repository, and `schemas` for the DTD.
 
 ## Tests
 

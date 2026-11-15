@@ -14,6 +14,12 @@ in `changes/`; see `changes/README.md` for the details.
 
 * Six synsets get the ILI of their Princeton 3.0 concept.
 
+### Changed
+
+* Two lexicons are released: `wncze`, with the English definitions and
+  the relations that omw-ntumc gives the 117 concepts shared with other
+  NTU-MC wordnets, and `wncze-min` without them, for Cygnet.
+
 ## 2.2 (2026-11-15)
 
 34,662 words, 48,302 senses, 28,977 synsets.

@@ -15,14 +15,30 @@ its own right, so a synset goes only when a change record removes it.
 New entries and senses get ids made like the others in this lexicon
 (``wncze-pes-n``, ``wncze-02001223-n-s3``).
 
-Writes release/wncze-VERSION.xml and the wn package
-release/wncze-VERSION.tar.xz (the XML with README, LICENSE and
-citation.bib).  The XML is checked against the WN-LMF 1.4 DTD if
-xmllint and a checkout of the schemas (../schemas) are there, and with
-the validation of the wn module: an error, or an ILI on two synsets,
-stops the release.
+Two lexicons are written, each with its wn package (the XML with
+README, LICENSE and citation.bib):
 
-Uses ntumc.wordnet from a checkout of NTU-MC beside this one (../NTUMC).
+    release/wncze-min-VERSION.xml   id wncze-min, the minimal lexicon:
+                                    what the Czech WordNet itself says.
+                                    For a concept of omw-ntumc it has the
+                                    words and the concept's identifier.
+    release/wncze-VERSION.xml       id wncze, the export: the minimal
+                                    lexicon with the English definition
+                                    and the relations omw-ntumc gives
+                                    those concepts, for users who want
+                                    one file.
+
+Cygnet takes the minimal lexicon, with omw-ntumc beside it; the wn
+module takes the export.  The release fails if the export lacks anything
+the lexicon said before it was split.
+
+Each XML is checked against the WN-LMF 1.4 DTD if xmllint and a
+checkout of the schemas (../schemas) are there, and with the validation
+of the wn module: an error, or an ILI on two synsets, stops the release.
+
+Uses ntumc.wordnet from a checkout of NTU-MC beside this one (../NTUMC),
+and omw-ntumc from a checkout beside this one (../omw-ntumc), built at
+the version pinned here (``uv run build.py 0.1`` at tag v0.1).
 """
 
 import argparse
@@ -40,7 +56,7 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT.parent / "NTUMC"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from ntumc.wordnet import changes, lmf, validate  # noqa: E402
+from ntumc.wordnet import changes, lmf, shared, validate  # noqa: E402
 from ntumc.wordnet.model import Entry, Item, Lexicon, Synset  # noqa: E402
 from visdic2lmf import SENSE_ID, escape_lemma, package  # noqa: E402
 
@@ -52,6 +68,9 @@ BASE_XZ_SHA256 = "b331c2256a5608d848c79a7d4ee9925aa86f03214ee278ecde80b63ff4d5c0
 BASE_XML_SHA256 = "b8db5dac8c7e8b0cf1d111bf599f1d7417e9752bb1cb10ec88edd34ff36ebed2"
 BASE = ROOT / "build" / "base" / f"{WN_ID}-{BASE_VERSION}.xml"
 CHANGES = ROOT / "changes" / f"{WN_ID}-{BASE_VERSION}.jsonl"
+SHARED_VERSION = "0.1"
+SHARED = ROOT.parent / "omw-ntumc" / "build" / f"omw-ntumc-{SHARED_VERSION}.xml"
+SHARED_SHA256 = "6ee5f6a254907d4fbdaa0e4238dddf0c3012ee92ef27fdd7d79815c46ff7c3f0"
 DTD = ROOT.parent / "schemas" / "WN-LMF-1.4.dtd"
 
 log = logging.getLogger("release")
@@ -162,27 +181,64 @@ def valid(xml: Path) -> bool:
     return True
 
 
+def load_shared() -> list[Item]:
+    """Read the shared-concepts lexicon the release is pinned to.
+
+    Returns:
+        The items of omw-ntumc at ``SHARED_VERSION``
+
+    Raises:
+        ValueError: if the build is missing or is not the pinned version
+    """
+    return shared.load(SHARED, SHARED_SHA256)
+
+
+def read_base(concepts: list[Item]) -> list[Item]:
+    """Read the base as a full lexicon with the id ``wncze``.
+
+    A base that is a minimal lexicon (``wncze-min``) is exported first,
+    so that the change records, which are for ``wncze``, apply to it.
+
+    Args:
+        concepts: the shared-concepts lexicon
+
+    Returns:
+        The items of the base
+    """
+    items = list(lmf.read(BASE))
+    header = next(i for i in items if isinstance(i, Lexicon))
+    if str(header.id).endswith(shared.SUFFIX):
+        items, _ = shared.export(items, concepts)
+    return items
+
+
 def release(version: str, out: Path, records: Path = CHANGES) -> list[str]:
-    """Apply the change records to the base and write the new release.
+    """Apply the change records to the base; write the minimal lexicon and the export.
 
     Args:
         version: the version of the new release
-        out: the XML file to write; not written if there are conflicts
+        out: the export's XML file; the minimal lexicon goes beside it.
+            Neither is written if there are conflicts
         records: the change records
 
     Returns:
         The conflicts, one line each.
+
+    Raises:
+        ValueError: if the export lacks something the lexicon said
+            before it was split, or omw-ntumc is not the pinned version
     """
     fetch_base()
-    base = list(lmf.read(BASE))
-    items, conflicts = changes.apply(list(lmf.read(BASE)), changes.read(records))
+    concepts = load_shared()
+    base = read_base(concepts)
+    items, conflicts = changes.apply(read_base(concepts), changes.read(records))
     if conflicts:
         return conflicts
     renamed = tidy_ids(items, base)
     log.info("%d new entries and senses", len(renamed))
     next(i for i in items if isinstance(i, Lexicon)).version = version
     out.parent.mkdir(parents=True, exist_ok=True)
-    lmf.write(out, items)
+    shared.write_release(items, concepts, out)
     return []
 
 
@@ -203,8 +259,10 @@ def main() -> None:
         for line in conflicts:
             log.error(line)
         sys.exit(1)
-    if not valid(out) or not validate.check(out):
+    small = out.with_name(f"{WN_ID}{shared.SUFFIX}-{args.version}.xml")
+    if not all([valid(small), validate.check(small), valid(out), validate.check(out)]):
         sys.exit(1)
+    log.info("Wrote %s and %s", small, package(small, f"{WN_ID}{shared.SUFFIX}"))
     log.info("Wrote %s and %s", out, package(out, WN_ID))
 
 

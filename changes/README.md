@@ -6,10 +6,30 @@ From release 2.1 on, the master copy of the Czech WordNet in WN-LMF is
   release and checked against its checksum by `release.py`), and
 * `wncze-2.2.jsonl`: every change made since, one per line, in order.
 
-`uv run release.py 2.3` applies the changes to the base and writes
-`release/wncze-2.3.xml` and its package.  After a release, the new XML
-is the base and a new, empty log is started; the old file stays as the
-history.  `wncze-2.1.jsonl` holds the 6,266 changes that made 2.2 from
+`uv run release.py 2.3` applies the changes to the base and writes two
+lexicons, each with its package:
+
+* `release/wncze-min-2.3.xml` (id `wncze-min`), the minimal lexicon:
+  what the Czech WordNet itself says.  For a concept CILI does not have
+  yet it holds the words and the concept's identifier
+  (`dc:identifier="ntumc02686"`); the English definition and the
+  relations are in the shared lexicon `omw-ntumc`.  Cygnet takes this
+  one, with omw-ntumc beside it.
+* `release/wncze-2.3.xml` (id `wncze`), the export: the minimal lexicon
+  with what `omw-ntumc` says put back (117 definitions and 104
+  relations), for users of `wn`, who want one file.
+
+`release.py` fails if the export lacks anything the lexicon said before
+it was split.  `omw-ntumc` is read from a checkout beside this one,
+built at the version `release.py` pins (`uv run build.py 0.1` at tag
+`v0.1`).  Release 2.2 was one lexicon, `wncze`, which said nothing of
+the omw-ntumc concepts but their words: it is the minimal lexicon in
+all but name.
+
+After a release, the minimal XML is the base and a new, empty log is
+started; the old file stays as the history.  `release.py` exports a
+minimal base before it applies the changes, so the records are always
+for `wncze`.  `wncze-2.1.jsonl` holds the 6,266 changes that made 2.2 from
 2.1; the rest of this page describes them.
 
 2.1 itself is made from the DEBVisDic source by

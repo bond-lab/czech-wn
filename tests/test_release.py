@@ -9,7 +9,7 @@ import pytest
 import release as r  # puts ../NTUMC on the path
 import ntumc2changes as n
 from ntumc.wordnet import changes, lmf, validate
-from ntumc.wordnet.model import Entry, Lexicon, Sense, Synset
+from ntumc.wordnet.model import Entry, Lexicon, Relation, Sense, Synset, Text
 
 OUT = Path(__file__).parent / "output"
 WHO = {"lexicon": "wncze", "user": "tester", "source": "native check", "reason": "test",
@@ -36,7 +36,20 @@ def base(tmp_path, monkeypatch) -> Path:
     lmf.write(path, base_items())
     monkeypatch.setattr(r, "BASE", path)
     monkeypatch.setattr(r, "fetch_base", lambda: None)
+    monkeypatch.setattr(r, "load_shared", shared_items)
     return path
+
+
+def shared_items() -> list:
+    """A shared-concepts lexicon with one concept, under the first synset of the base."""
+    header = Lexicon(id="omw-ntumc", label="Shared", language="mul", email="x@example.org",
+                     license="https://example.org/", version="0",
+                     namespaces={"dc": "https://globalwordnet.github.io/schemas/dc/"})
+    return [header,
+            Synset(id="omw-ntumc-i1-n", ili="i1", pos="n"),
+            Synset(id="omw-ntumc-00001-n", ili="in", pos="n", meta={"dc:identifier": "ntumc00001"},
+                   definitions=[Text(text="a kind of dog", lang="en")],
+                   relations=[Relation(link="hypernym", target="omw-ntumc-i1-n")])]
 
 
 def records(tmp_path: Path, *changes: dict) -> Path:
@@ -191,3 +204,49 @@ def test_the_change_log_fits_the_base_and_passes_the_validation_of_wn(tmp_path):
     # Assert
     assert conflicts == []
     assert validate.check(xml)
+
+
+def test_release_writes_the_minimal_lexicon_and_the_export(base, tmp_path):
+    OUT.mkdir(exist_ok=True)
+    out = OUT / "wncze-1.xml"
+    log = records(tmp_path,
+                  {"action": "add_synset", "synset": "wncze-NTUMC-1-n", "pos": "n", "new": "",
+                   "identifier": "ntumc00001"},
+                  {"action": "add_sense", "synset": "wncze-NTUMC-1-n", "lemma": "vlčák",
+                   "pos": "n"})
+
+    conflicts = r.release("1", out, log)
+
+    _, full, full_header = read(out)
+    _, small, small_header = read(OUT / "wncze-min-1.xml")
+    assert conflicts == []
+    assert (full_header.id, small_header.id) == ("wncze", "wncze-min")
+    assert [q.ref for q in small_header.requires] == ["omw-ntumc"]
+    assert full_header.requires == []
+    # the export has what omw-ntumc says of the concept; the minimal lexicon does not
+    assert [d.text for d in full["wncze-NTUMC-1-n"].definitions] == ["a kind of dog"]
+    assert [(x.link, x.target) for x in full["wncze-NTUMC-1-n"].relations] == [
+        ("hypernym", "wncze-00000001-n")]
+    assert small["wncze-NTUMC-1-n"].definitions == []
+    assert small["wncze-NTUMC-1-n"].relations == []
+    assert small["wncze-NTUMC-1-n"].meta["dc:identifier"] == "ntumc00001"
+
+
+def test_a_minimal_lexicon_can_be_the_base(base, tmp_path, monkeypatch):
+    OUT.mkdir(exist_ok=True)
+    first = OUT / "wncze-2.xml"
+    r.release("2", first, records(tmp_path, {
+        "action": "add_synset", "synset": "wncze-NTUMC-1-n", "pos": "n", "new": "",
+        "identifier": "ntumc00001"}))
+    monkeypatch.setattr(r, "BASE", OUT / "wncze-min-2.xml")
+    out = OUT / "wncze-3.xml"
+    log = records(tmp_path, {"action": "add_sense", "synset": "wncze-NTUMC-1-n",
+                             "lemma": "vlčák", "pos": "n"})
+
+    conflicts = r.release("3", out, log)
+
+    entries, full, header = read(out)
+    assert conflicts == []
+    assert header.id == "wncze"
+    assert "wncze-vlčák-n" in entries
+    assert [d.text for d in full["wncze-NTUMC-1-n"].definitions] == ["a kind of dog"]
