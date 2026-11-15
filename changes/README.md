@@ -160,6 +160,13 @@ one); antonymy between synsets.  Derivation and pertainym, which link
 59 more of the synsets in Princeton, are relations between English
 words and are not copied.
 
+The six `exemplifies` relations were a mistake and are taken out again
+by six `remove_relation` records: they said that *všude*, *přece*,
+*patrně*, *rozlícený* are colloquial, *odtud* archaic and *víc* a
+comparative, because the English words of the concept are.  A usage
+label belongs to a word of one language.  The script no longer copies
+them, which leaves 375 relations.
+
 A synset of 2.1 that has a hypernym keeps it.  Seven are given another
 by Princeton 3.0 and are not changed: six kinds of trousers (*džínsy*,
 *pumpky*, ...), which 2.1 has under *kalhoty* `wncze-04315668-n` and

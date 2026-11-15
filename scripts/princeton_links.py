@@ -18,7 +18,9 @@ The relations are written the way release 2.1 has them:
   member), so a Princeton ``hyponym`` becomes the other synset's
   ``hypernym``;
 * antonymy between synsets, though Princeton has it between words;
-* nothing for derivation and pertainym: they hold between English words.
+* nothing for derivation and pertainym: they hold between English words;
+* nothing for usage (``exemplifies``): that an English word is colloquial
+  or archaic says nothing about the Czech one.
 
 A synset of release 2.1 that has a hypernym keeps it: where Princeton
 gives it another, through a new synset, that is listed and not added.
@@ -52,12 +54,12 @@ USER = "fcbond"
 # Princeton relation -> the relation here, from the same synset
 KEEP = {"hypernym", "instance_hypernym", "holo_part", "holo_member", "holo_substance",
         "antonym", "similar", "also", "attribute", "causes", "entails",
-        "domain_topic", "domain_region", "exemplifies"}
+        "domain_topic", "domain_region"}
 # Princeton relation -> the relation here, from the other synset
 TURN = {"hyponym": "hypernym", "instance_hyponym": "instance_hypernym",
         "mero_part": "holo_part", "mero_member": "holo_member",
         "mero_substance": "holo_substance", "has_domain_topic": "domain_topic",
-        "has_domain_region": "domain_region", "is_exemplified_by": "exemplifies"}
+        "has_domain_region": "domain_region"}
 # relations Princeton has between words that 2.1 has between synsets
 FROM_SENSES = {"antonym", "also", "similar"}
 

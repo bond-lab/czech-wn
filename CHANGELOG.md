@@ -12,7 +12,7 @@ in `changes/`; see `changes/README.md` for the details.
 * 813 senses, 82 examples and 4 definitions added to Czech in the
   NTU-MC wordnet (2024-2025), most by students at Palacký University
   tagging Karel Čapek's *Válka s mloky*, with 508 new synsets for them.
-* 381 relations that link the new synsets to the rest, from Princeton
+* 375 relations that link the new synsets to the rest, from Princeton
   WordNet 3.0.
 * 1,243 examples for 793 verb synsets, from the examples in their verb
   frames.

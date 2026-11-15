@@ -79,3 +79,15 @@ def test_records_are_numbered_on_from_the_log():
     assert (made[1].synset, made[1].link, made[1].target) == (
         "wncze-3-n", "similar", "wncze-4-n")
     assert made[0].source and made[0].reason and made[0].user
+
+
+def test_links_does_not_copy_usage_labels():
+    # Arrange
+    relations = [("i3", "is_exemplified_by", "i1"), ("i1", "exemplifies", "i3")]
+
+    # Act
+    found, left = p.links(relations, lexicon(), {"wncze-3-n"})
+
+    # Assert
+    assert found == []
+    assert left == []
