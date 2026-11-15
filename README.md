@@ -49,6 +49,11 @@ wn.download("https://github.com/bond-lab/czech-wn/releases/download/v2.1/wncze-2
 wn.synsets("pes", lexicon="wncze")
 ```
 
+The wordnet records a relation one way only: a synset has its
+hypernym, but the hypernym does not list its hyponyms, so
+`synset.hyponyms()` finds nothing.  `notes/reverse_relations.py` loads
+the XML file into `wn` with the reverse relations added.
+
 ## Please cite
 
 > Adam Rambousek, Karel Pala and Sandra Tukačová. 2017.
@@ -87,7 +92,7 @@ licences: <https://live.european-language-grid.eu/catalogue/lcr/2364>.
 | `changes/` | the changes since 2.1, one record per line; see `changes/README.md` |
 | `release.py` | makes the next release: the last release plus the changes |
 | `sources/` | the files as Masaryk University gave them to us: three versions of the Czech WordNet, and the PDT annotation dictionary, which has **a different licence**; see `sources/README.md` |
-| `notes/` | how 2.1 was converted (`conversion.md`); the verb frames (`verb-frames.md`); references (`references.md`) |
+| `notes/` | how 2.1 was converted (`conversion.md`); the verb frames (`verb-frames.md`); loading with reverse relations (`reverse_relations.py`); references (`references.md`) |
 | `scripts/visdic2lmf.py` | made release 2.1 from the source |
 | `scripts/` | the scripts that made change records: from the NTU-MC wordnet (`ntumc2changes.py`), from Princeton WordNet (`princeton_links.py`), from the NTU-MC Czech corpus (`corpus_counts.py`) and from the verb frames (`frames_to_senses.py`, `frame_examples.py`) |
 | `additions/` | words added in 2025 while annotating *War with the Newts*; now change records |
