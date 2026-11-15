@@ -20,7 +20,8 @@ person behind every account, so they are not listed here by name.
 
 Marek Blahuš made the extended version in
 `sources/wncze-blahus.xml.zip` in his diploma thesis (2011, advisor
-Karel Pala).
+Karel Pala).  That version is built on one with derivational relations,
+made by Karel Pala and Dana Hlaváčková (2007).
 
 Adam Rambousek gave us the three files in `sources/` and the licence
 (2026-11-05).
@@ -30,10 +31,11 @@ Adam Rambousek gave us the three files in `sources/` and the licence
 The words in `additions/2025-04/` were made by Francis Bond and checked
 and improved by Kateřina Daňková.
 
-Annotators of the Czech part of the NTU-MC corpus added words, synsets,
-definitions and examples in the NTU-MC wordnet (2024-2025).  The change
-records in `changes/` keep the account that made each one (`s109`,
-`s73`, ...); we do not list the people behind the accounts by name.
+Students in two courses at Palacký University (*Syntax and Semantics*,
+Asian Studies (KAS/[45]UJ2): 2024, 2025; and *Lexicology*, Linguistics
+(KOL/LEXI): 2026) used the wordnet in tagging Karel Čapek's *Válka s
+Mloky* "War with the Newts". They proposed new senses, synsets,
+definitions and example as part of this.
 
 Concepts that are not in Princeton WordNet are named by omw-ntumc
 (<https://github.com/bond-lab/omw-ntumc>) and omw-pronoun

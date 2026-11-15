@@ -24,12 +24,14 @@ base; each adds different synsets.
   Marek Blahuš (diploma thesis, 2011, <https://is.muni.cz/th/ukl2c/>):
   the English words of Princeton WordNet synsets were translated with
   Josef Fronek's *Velký anglicko-český slovník* (LEDA, 2006) and
-  confident matches were added.  It also has derivational relations
-  (`derived`, `eng_derivative`).  **Not checked by hand**: a check of 600
-  synsets, reported in a bachelor's thesis, found that 30% had wrong
-  or unwanted synonyms and 20% of the new synsets had the wrong
-  hypernym; the version was not to be published before thorough
-  editing, though it is available for research.
+  confident matches were added.  It is built on a version with
+  derivational relations (`derived`, `eng_derivative`; Pala and
+  Hlaváčková 2007, <https://aclanthology.org/W07-1710/>).  **Not
+  checked by hand**: a check of 600 synsets found that 30% had wrong or
+  unwanted synonyms and 20% of the new synsets had the wrong hypernym;
+  the version was not to be published before thorough editing, though
+  it is available for research (Rambousek, Horák and Pala 2018, p. 3,
+  <https://doi.org/10.11649/cs.1715>).
 * `wncze-ext.xml.zip`: 28,667 synsets.  Extended a little in a
   linguistics thesis at the University of Naples (200 new synsets, with
   definitions and examples).
@@ -41,7 +43,8 @@ The verb frames (`VALENCY`) probably come from VerbaLex:
 
 `nas_anotacni_slovnik.xml` is **not** covered by the CC BY-SA licence
 of this repository.  It is the version of the Czech WordNet used to
-annotate the Prague Dependency Treebank, from
+annotate the Prague Dependency Treebank (Hajič et al. 2004,
+<https://ufal.mff.cuni.cz/~pecina/files/lrec-2004.pdf>), from
 <https://lindat.mff.cuni.cz/repository/handle/11858/00-097C-0000-0001-487A-4>.
 Its licence is CC BY-NC-SA 3.0 (non-commercial); see the record for
 the terms.
