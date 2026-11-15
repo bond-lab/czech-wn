@@ -18,7 +18,9 @@ New entries and senses get ids made like the others in this lexicon
 Writes release/wncze-VERSION.xml and the wn package
 release/wncze-VERSION.tar.xz (the XML with README, LICENSE and
 citation.bib).  The XML is checked against the WN-LMF 1.4 DTD if
-xmllint and a checkout of the schemas (../schemas) are there.
+xmllint and a checkout of the schemas (../schemas) are there, and with
+the validation of the wn module: an error, or an ILI on two synsets,
+stops the release.
 
 Uses ntumc.wordnet from a checkout of NTU-MC beside this one (../NTUMC).
 """
@@ -38,7 +40,7 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT.parent / "NTUMC"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from ntumc.wordnet import changes, lmf  # noqa: E402
+from ntumc.wordnet import changes, lmf, validate  # noqa: E402
 from ntumc.wordnet.model import Entry, Item, Lexicon, Synset  # noqa: E402
 from visdic2lmf import SENSE_ID, escape_lemma, package  # noqa: E402
 
@@ -176,8 +178,6 @@ def release(version: str, out: Path, records: Path = CHANGES) -> list[str]:
     items, conflicts = changes.apply(list(lmf.read(BASE)), changes.read(records))
     if conflicts:
         return conflicts
-    if changes.shared_ilis(items):
-        return changes.shared_ilis(items)
     renamed = tidy_ids(items, base)
     log.info("%d new entries and senses", len(renamed))
     next(i for i in items if isinstance(i, Lexicon)).version = version
@@ -203,7 +203,7 @@ def main() -> None:
         for line in conflicts:
             log.error(line)
         sys.exit(1)
-    if not valid(out):
+    if not valid(out) or not validate.check(out):
         sys.exit(1)
     log.info("Wrote %s and %s", out, package(out, WN_ID))
 

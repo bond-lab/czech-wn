@@ -196,6 +196,24 @@ that no ILI is on two synsets:
   them the two synsets share a Czech word, and where 3.0 joined the
   two concepts they could still be merged (`merge_synset`).
 
+## A word once in a synset (2026-11-15)
+
+The source lists a word twice in three synsets (*ulevit*,
+*individualismus*, *vedoucí osobnost*), and 2.1 kept both senses.
+Three `remove_sense` records, each naming one sense by its id
+(`sense`), take the second away.
+
+## Validation
+
+After writing the XML, `release.py` checks it against the WN-LMF DTD
+and runs the validation of the `wn` module (NTU-MC
+`ntumc.wordnet.validate`).  An error stops the release, and so do an
+ILI on two synsets (`W302`), a word twice in a synset (`W202`) and two
+entries for one word in a synset (`W203`).  The other warnings are
+counted in the log: 25 empty synsets, 35 repeated definitions, 2
+hypernyms of another part of speech, and 9,165 relations with no
+reverse (the source has `hypernym` and `holo_part` one way only).
+
 ## To decide
 
 * The pronouns are here as in COW, as synsets carrying an omw-pronoun

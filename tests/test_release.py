@@ -8,7 +8,7 @@ import pytest
 
 import release as r  # puts ../NTUMC on the path
 import ntumc2changes as n
-from ntumc.wordnet import changes, lmf
+from ntumc.wordnet import changes, lmf, validate
 from ntumc.wordnet.model import Entry, Lexicon, Sense, Synset
 
 OUT = Path(__file__).parent / "output"
@@ -177,14 +177,17 @@ def test_the_first_change_log_applies_to_the_base():
     assert conflicts == []
 
 
-def test_the_change_log_fits_the_base_and_no_ili_is_on_two_synsets():
+def test_the_change_log_fits_the_base_and_passes_the_validation_of_wn(tmp_path):
     # Arrange
+    pytest.importorskip("wn")
     if not r.BASE.exists():
         pytest.skip("base release not downloaded: run release.py once")
+    xml = tmp_path / "changed.xml"
 
     # Act
     items, conflicts = changes.apply(lmf.read(r.BASE), changes.read(r.CHANGES))
+    lmf.write(xml, items)
 
     # Assert
     assert conflicts == []
-    assert changes.shared_ilis(items) == []
+    assert validate.check(xml)
