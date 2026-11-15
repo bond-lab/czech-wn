@@ -49,8 +49,8 @@ The actions and the fields each needs are in NTU-MC
 | `wncze-CZE-00000002-z` | a Czech concept from the source |
 | `wncze-NTUMC-80002448-a` | a concept made in NTU-MC; its `dc:identifier` names it in omw-ntumc (`ntumc02685`) or omw-pronoun (`pronoun:1;Sg`) |
 
-A synset added for a Princeton concept has its ILI and nothing else: no
-definition and no relations.  A synset added for an NTU-MC concept has
+A synset added for a Princeton concept has its ILI and no definition;
+its relations are added from Princeton WordNet (below).  A synset added for an NTU-MC concept has
 only the identifier; its definition and relations are in omw-ntumc or
 omw-pronoun.
 
@@ -129,6 +129,73 @@ Also waiting:
 * `additions/2025-04/pronouns-quick.tab` ends with 42 words noted as
   missing, with no synset.
 
+## Links for the new synsets (2026-11-15)
+
+The 361 synsets added for Princeton concepts (the 358 above and three
+pronoun concepts that Princeton also has) came with no relations.
+`scripts/princeton_links.py` reads Princeton WordNet 3.0 (omw-en 1.4,
+through `wn`) and adds each relation between such a concept and another
+that the Czech WordNet has, found through the ILIs: 381 `add_relation`
+records, for 158 of the synsets (66 of 83 nouns, 22 of 24 verbs, 61 of
+121 adjectives, 9 of 133 adverbs).
+
+| records | relation |
+|---:|---|
+| 128 | `similar` |
+| 76 | `hypernym` |
+| 38 | `also` |
+| 37 | `holo_part` |
+| 30 | `antonym` |
+| 22 | `domain_region` |
+| 17 | `instance_hypernym` |
+| 16 | `holo_member` |
+| 10 | `attribute` |
+| 6 | `exemplifies` |
+| 1 | `domain_topic` |
+
+They are written as 2.1 writes relations: `hypernym`, `holo_part` and
+the domains one way only, on the narrower synset, the part and the
+member (so 160 of the records are on a synset of 2.1 and point to a new
+one); antonymy between synsets.  Derivation and pertainym, which link
+59 more of the synsets in Princeton, are relations between English
+words and are not copied.
+
+A synset of 2.1 that has a hypernym keeps it.  Seven are given another
+by Princeton 3.0 and are not changed: six kinds of trousers (*džínsy*,
+*pumpky*, ...), which 2.1 has under *kalhoty* `wncze-04315668-n` and
+3.0 under the new `wncze-ENG30-04489008-n` (also *kalhoty*; the two
+are now one, see below), and *rovnostranný trojúhelník*.
+
+The other 203 new synsets, mostly adverbs, still have no relations.
+Run the script again (`--write`) after more synsets are added; it adds
+only what is missing.
+
+## One ILI, one synset (2026-11-15)
+
+In 2.1, 69 ILIs are each on two synsets.  The ILIs are in the source,
+and are those of CILI's map from Princeton 2.0: where 3.0 moved a word
+or joined two synsets, two 2.0 synsets got one ILI.  Princeton 2.0 says
+what each synset is.
+
+*kalhoty* is corrected.  2.0 *trousers, pants* (`wncze-04315668-n`)
+had the ILI of *bloomers* (i50863), which is *dámské kalhotky*
+`wncze-02753844-n`.  Its concept is 3.0 *trouser, pant* (i60589), for
+which an annotator's *kalhoty* had made `wncze-ENG30-04489008-n`.  A
+`merge_synset` record joins that to the old synset and a `set_ili`
+record gives the old synset i60589.
+
+`shared-ili-2.1.tsv` lists the other 68, with both definitions.  They
+are settled by 68 `set_ili` records (ruled by fcbond, 2026-11-15), so
+that no ILI is on two synsets:
+
+* 68 synsets keep the ILI: the one whose 2.0 definition is the 3.0
+  definition (51), or is nearest to it (17);
+* 18 get another ILI: a 3.0 synset that has their 2.0 definition and
+  that no synset here has (17), or the other ILI the source gives (1);
+* 50 lose the ILI: no 3.0 synset has their definition.  For 19 of
+  them the two synsets share a Czech word, and where 3.0 joined the
+  two concepts they could still be merged (`merge_synset`).
+
 ## To decide
 
 * The pronouns are here as in COW, as synsets carrying an omw-pronoun
@@ -136,4 +203,7 @@ Also waiting:
   (`omw-pronoun-cs`); the words could live only there.
 * *kde* and *kam* are both on `pronoun:Plc;Int`; omw-pronoun tells
   place from goal.
-* The 358 synsets added for Princeton concepts have no relations.
+* `instance_hypernym` is new here: 2.1 follows Princeton 2.0 and has
+  `hypernym` for instances too.
+* Whether to merge any of the 19 pairs in `shared-ili-2.1.tsv` that
+  share a Czech word and now differ only in that one has no ILI.

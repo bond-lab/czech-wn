@@ -165,7 +165,11 @@ against the WN-LMF DTD).
 The first changes bring in the words, definitions and examples added
 to Czech in the NTU-MC wordnet: 813 senses, 508 synsets, 4 definitions
 and 82 examples.  Another 130 additions are held until a Czech speaker
-has looked at them.  Nothing is released yet.  See `changes/README.md`.
+has looked at them.  The new synsets that are Princeton concepts are
+then linked to the rest as Princeton WordNet 3.0 links them
+(`scripts/princeton_links.py`): 381 relations.  No ILI is on
+two synsets any more (`changes/shared-ili-2.1.tsv`).  Nothing is released
+yet.  See `changes/README.md`.
 
 ## Tests
 
@@ -190,6 +194,20 @@ uv run --group dev ruff check .
 * Marek Blahuš. 2011. *Extending Czech WordNet Using a Bilingual
   Dictionary*. Diploma thesis, Faculty of Informatics, Masaryk
   University, Brno. Advisor: Karel Pala. <https://is.muni.cz/th/ukl2c/>
+* Adam Rambousek, Aleš Horák and Karel Pala. 2018. Sustainable
+  long-term WordNet development and maintenance: Case study of the
+  Czech WordNet. *Cognitive Studies | Études cognitives* 18.
+  <https://doi.org/10.11649/cs.1715>
+* Karel Pala and Dana Hlaváčková. 2007. Derivational Relations in
+  Czech WordNet. In *Proceedings of the Workshop on Balto-Slavonic
+  Natural Language Processing*, pages 75–81. Prague: Association for
+  Computational Linguistics. <https://aclanthology.org/W07-1710/>
+* Jan Hajič, Martin Holub, Marie Hučínová, Martin Pavlík, Pavel Pecina,
+  Pavel Straňák and Pavel M. Šidák. 2004. Validating and Improving the
+  Czech WordNet via Lexico-Semantic Annotation of the Prague Dependency
+  Treebank. In *Proceedings of the LREC 2004 Workshop: Building Lexical
+  Resources from Semantically Annotated Corpora*, pages 25–30. Lisbon.
+  <https://ufal.mff.cuni.cz/~pecina/files/lrec-2004.pdf>
 * Aleš Horák, Karel Pala, Adam Rambousek and Martin Povolný. 2006.
   DEBVisDic – First Version of New Client-Server Wordnet Browsing and
   Editing Tool. In *Proceedings of the Third International WordNet

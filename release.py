@@ -176,6 +176,8 @@ def release(version: str, out: Path, records: Path = CHANGES) -> list[str]:
     items, conflicts = changes.apply(list(lmf.read(BASE)), changes.read(records))
     if conflicts:
         return conflicts
+    if changes.shared_ilis(items):
+        return changes.shared_ilis(items)
     renamed = tidy_ids(items, base)
     log.info("%d new entries and senses", len(renamed))
     next(i for i in items if isinstance(i, Lexicon)).version = version
