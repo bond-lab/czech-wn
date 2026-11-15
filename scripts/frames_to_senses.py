@@ -7,10 +7,10 @@
 The source has the frames on the synset, so in 2.1 every verb of a
 synset names all its frames.  Many frames begin with the verbs they are
 for (``{podplatit, koupit si} kdo1*AG...``).  Where at least one of
-those verbs is in the synset, the frame stays on them and is taken off
-the synset's other verbs.  A frame that names no verb, or only verbs
-that are not in the synset, stays on all of them.  See
-notes/verb-frames.md.
+those verbs is in the synset, the frame is on them and on no other verb
+of the synset.  A frame that names no verb, or only verbs that are not
+in the synset, stays on the verbs that have it; a verb added to the
+synset later does not get it.  See notes/verb-frames.md.
 
 A ``set_frames`` record is written for each sense whose frames change;
 one that is already right is left alone, so the script can be run again.
@@ -65,19 +65,20 @@ def placed(items: list[Item]) -> dict[tuple[str, str], tuple[str, str]]:
         each as frame ids with spaces between
     """
     frames = {str(f.id): str(f.frame) for f in items if isinstance(f, Frame)}
+    order = {frame: n for n, frame in enumerate(frames)}
     senses: dict[str, dict[str, list[str]]] = defaultdict(dict)
     for entry in items:
         if isinstance(entry, Entry):
             for sense in entry.senses:
-                if sense.subcat:
-                    senses[str(sense.synset)][str(entry.lemma)] = str(sense.subcat).split()
+                senses[str(sense.synset)][str(entry.lemma)] = str(sense.subcat or "").split()
     out: dict[tuple[str, str], tuple[str, str]] = {}
     for synset, by_lemma in senses.items():
+        of_synset = sorted({f for now in by_lemma.values() for f in now}, key=order.__getitem__)
         for lemma, now in by_lemma.items():
             keep = []
-            for frame in now:
+            for frame in of_synset:
                 verbs = [v for v in named(frames[frame]) if v in by_lemma]
-                if not verbs or lemma in verbs:
+                if lemma in verbs or (not verbs and frame in now):
                     keep.append(frame)
             if keep != now:
                 out[(synset, lemma)] = (" ".join(now), " ".join(keep))

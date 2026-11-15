@@ -297,6 +297,31 @@ was an adjective in the source and `wncze-00236555-a` a noun; each has
 a `set_pos` record.  The only word of the second is *testik*, which
 looks like a test entry (issue 6).
 
+**Relations read by two reviewers.**  The antonym, `similar` and `also`
+relations taken from Princeton hold between the concepts, but not
+always between the Czech words on them.
+
+* Four antonym pairs are taken out after a check against the antonyms
+  of the Czech Wiktionary (the extract of kaikki.org, 10,791 pairs):
+  *malý* and *hodně, mnoho*; *rád* and *vážný*; *mračit se* and
+  *zesvětlit*; *boční* and *spodní*.
+* Two reviewers (Claude Sonnet 5.5, 2026-11-15, each working alone, on
+  sheets in different orders, not told where the relations came from)
+  then read the 171 pairs that were left: 101 `similar`, 43 `also`, 27
+  antonym.  They agreed that 118 are ok.  The 26 that neither accepted
+  are taken out again (50 `remove_relation` records) and wait in
+  `held-links-2.1.tsv` for a person; the 27 that one of them accepted
+  stay, and are in the same table (issue 7).
+
+578 relations from Princeton are left.
+
+**Frames after the lemmas were cleaned.**  `scripts/frames_to_senses.py`
+now looks at every verb of a synset, so that a frame is on the verbs it
+names once they have their plain lemma (*vyložit*, *téci*, *navázat*)
+or were added later (*říkat*): 12 more `set_frames` records, and 2 more
+examples.  A verb added to a synset later gets only the frames that
+name it.
+
 ## Validation
 
 After writing the XML, `release.py` checks it against the WN-LMF DTD

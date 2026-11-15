@@ -1,0 +1,54 @@
+relation	synset_1	synset_2	czech_1	czech_2	review_1	reason_1	review_2	reason_2	status	ruling
+also	wncze-01275387-v	wncze-01275685-v	lovit	tápat	doubt	lovit weak for grope	doubt	lovit does not clearly mean grope	removed	
+also	wncze-00603028-v	wncze-02624884-v	vysvětlit, vyložit, interpretovat	držet, přidat se, být zajedno	doubt	unrelated senses of Czech words	wrong	držet/přidat se/být zajedno does not match collocate; unrelated to interpret	removed	
+antonym	wncze-00152112-n	wncze-06800497-n	odrazování od něčeho, zrazování od něčeho	domluva	doubt	domluva is a talking-to	doubt	domluva is not clearly persuasion	removed	
+antonym	wncze-00203214-b	wncze-00203363-b	snad	beznadějně, zoufale	doubt	snad is perhaps, not hopeful	doubt	snad means perhaps, not hopefully	removed	
+similar	wncze-00185547-a	wncze-ENG30-00182718-a	automatický	chytrý	doubt	automatic vs chytrý loose	doubt	automatický vs chytrý loose	removed	
+similar	wncze-01005286-a	wncze-01188767-a	bezútěšný	ztracený, osamělý	doubt	ztracený, osamělý does not match grief-desolate	doubt	ztracený/osamělý do not fit 'crushed by grief'	removed	
+similar	wncze-01858689-a	wncze-01861348-a	hlučný	šustivý, šustící, šelestivý	doubt	šustivý is soft, not noisy	doubt	hlučný vs šustivý (soft rustling) not near	removed	
+similar	wncze-00288409-a	wncze-02159799-a	hrubý, drsný, hrbolatý	nakřaplý, nakřápnutý	doubt	rough vs cracked paint loose	doubt	cracked paint vs rough only loosely related	removed	
+similar	wncze-00277970-a	wncze-02158947-a	jasný	hedvábný	doubt	jasný vs hedvábný weak link	doubt	jasný and hedvábný only weakly related	removed	
+similar	wncze-01056112-a	wncze-02186277-a	jistý, nějaký	oba	wrong	jistý/nějaký and oba unrelated	doubt	nějaký and oba are not near in meaning	removed	
+similar	wncze-01763139-a	wncze-01763486-a	nemožný	zoufalý	doubt	nemožný vs zoufalý loose	doubt	zoufalý vs nemožný loose	removed	
+similar	wncze-00496390-a	wncze-ENG30-00524607-a	neúplný	ani	wrong	neúplný and ani unrelated	wrong	neúplný and ani are unrelated	removed	
+similar	wncze-01500322-a	wncze-01501246-a	některý	hodně, mnoho	doubt	některý is not 'many'	doubt	některý is not 'relatively many'	removed	
+similar	wncze-01475424-v	wncze-02627311-v	pnout se	splést, proplést	doubt	pnout se is climbing/twining, not clearly intertwine	doubt	splést vs pnout se loose	removed	
+similar	wncze-00128476-a	wncze-01909823-a	průvodní	následný, následující	doubt	průvodní accompanying vs následný subsequent differ	doubt	průvodní (accompanying) differs from následný	removed	
+similar	wncze-01183263-a	wncze-01928224-a	reprezentativní, únosný	charakterní	doubt	reprezentativní/únosný do not match respectable	doubt	reprezentativní/únosný not matching respectable well	removed	
+similar	wncze-00418975-a	wncze-00538612-a	spojený	sousední	doubt	connected vs neighbouring loose	doubt	spojený vs sousední only loosely similar	removed	
+similar	wncze-00234910-a	wncze-02034166-a	starší	stařešina	doubt	stařešina is a noun	doubt	stařešina is a noun, not adjective senior	removed	
+similar	wncze-01055478-a	wncze-01502205-a	takový	hodně, mnoho	doubt	takový vs hodně loose	doubt	takový vs hodně not near	removed	
+similar	wncze-02317012-a	wncze-02323928-a	tlustý	těžký, notorický	doubt	notorický does not fit heavy	doubt	notorický does not fit heavy; těžký vs tlustý loose	removed	
+similar	wncze-00764219-a	wncze-00764879-a	tvrdý	opilý	doubt	tvrdý not natural for very drunk	doubt	tvrdý as very drunk is questionable	removed	
+similar	wncze-01164003-a	wncze-02385299-a	visutý, nadúrovňový	zdvižený	doubt	visutý/nadúrovňový odd for elevated	doubt	visutý/nadúrovňový vs zdvižený loose	removed	
+similar	wncze-00067771-a	wncze-00206882-a	vpřed	střemhlavý	doubt	vpřed vs střemhlavý loose	doubt	střemhlavý and vpřed not near	removed	
+similar	wncze-00410730-v	wncze-00533541-v	vyrazit	vybujet, probořit	doubt	senses loosely related	doubt	vybujet/probořit do not match erupt senses	removed	
+similar	wncze-01287857-a	wncze-01289933-a	zkoumavý	inteligentní	doubt	zkoumavý vs inteligentní loose	doubt	zkoumavý is weakly related to inteligentní	removed	
+similar	wncze-00394641-a	wncze-00412257-a	šeredný, nepěkný	nečistý, špinavý	doubt	šeredný means ugly, not filthy	doubt	šeredný/nepěkný means ugly, not filthy	removed	
+also	wncze-01056112-a	wncze-01500322-a	jistý, nějaký	hodně, mnoho	doubt	some vs many loose	ok		kept	
+also	wncze-00075003-a	wncze-01663408-a	nevkusný	nedobrý, nechutný	doubt	nevkusný is bad taste, not flavorless	ok		kept	
+also	wncze-00677990-a	wncze-01972372-a	robustní, statný	drsný	doubt	drsný is rough, not sturdy	ok		kept	
+also	wncze-00564949-a	wncze-02209292-a	systematický, trvalý, neustálý	stálý, stabilní	doubt	systematický does not fit constant	ok		kept	
+also	wncze-02323928-a	wncze-02469620-a	tlustý	široký	doubt	thick and wide only loosely related	ok		kept	
+also	wncze-01809346-a	wncze-01951587-a	vděčný	rentabilní	ok		doubt	vděčný rewarding vs rentabilní loose	kept	
+also	wncze-00228661-a	wncze-01576839-a	škodlivý	urážející	doubt	harmful vs offensive loose	ok		kept	
+also	wncze-00228661-a	wncze-02360568-a	škodlivý	otravný	doubt	otravný mostly annoying, toxic sense uncertain	ok		kept	
+antonym	wncze-01934453-v	wncze-01936392-v	stáhnout se, ustoupit	postupovat, utíkat, plynout	doubt	utíkat/plynout not advance	ok		kept	
+similar	wncze-00380235-a	wncze-02159628-a	bezbarvý	voskový	ok		doubt	voskový paleness vs bezbarvý loose	kept	
+similar	wncze-00228661-a	wncze-01122899-a	bodný	škodlivý	doubt	bodný vs škodlivý loose	ok		kept	
+similar	wncze-01391729-v	wncze-01557489-v	držet, nést se	unést, nést	doubt	senses differ: hold manner vs carry	ok		kept	
+similar	wncze-01858689-a	wncze-01860066-a	hlučný	rozvrzaný	doubt	rozvrzaný is creaky/rickety	ok		kept	
+similar	wncze-00235016-a	wncze-02035029-a	malý, mladší	mladší	ok		doubt	malý does not mean junior/younger in this sense	kept	
+similar	wncze-01059321-a	wncze-01335840-a	masový, hromadný	velký, veliký	ok		doubt	velký vs masový not clearly similar	kept	
+similar	wncze-01772575-a	wncze-02307220-a	nepořádný	divoký	doubt	nepořádný vs divoký loose	ok		kept	
+similar	wncze-02042650-a	wncze-02442137-a	netečný, rezervovaný, chladný, studený	pasivní	doubt	pasivní differs from cool/unfriendly	ok		kept	
+similar	wncze-00058220-a	wncze-00059616-a	plastický, vyražený	vyzdobený	doubt	embossed vs decorated only loosely related	ok		kept	
+similar	wncze-00723586-a	wncze-00724445-a	rozptýlený	nedbalý	doubt	rozptýlený is distracted, not negligent	ok		kept	
+similar	wncze-01104346-a	wncze-01104701-a	rád	vděčný	doubt	rád and vděčný differ	ok		kept	
+similar	wncze-01189766-a	wncze-01190341-a	vertikální	stojatý	doubt	stojatý often stagnant	ok		kept	
+similar	wncze-02091216-a	wncze-02244079-a	zanedbatelný, nedůležitý, nevýznamný, nic neříkající	ubohý, chabý, chatrný	doubt	ubohý/chabý not insignificant	ok		kept	
+similar	wncze-02251858-a	wncze-02252399-a	zklamaný	neúspěšný	doubt	zklamaný is feeling, not unsuccessful	ok		kept	
+similar	wncze-00976191-a	wncze-02453296-a	zle, churavý, nemocný	paralyzovaný	doubt	zle mixed in; ill vs paralyzed is loose	ok		kept	
+similar	wncze-00924853-a	wncze-00925662-a	zvláštní	vydařený, podivný, kuriózní, zvláštní, divný	doubt	vydařený does not mean strange	ok		kept	
+similar	wncze-01352400-a	wncze-01352845-a	zákonný, legální	soudní	ok		doubt	soudní (judicial) only loosely near zákonný	kept	
+similar	wncze-01751577-a	wncze-02472414-a	úzký	špičatý	doubt	špičatý is pointed rather than narrowing	ok		kept	

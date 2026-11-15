@@ -120,16 +120,17 @@ senses, so in 2.1 every verb of a synset names all its frames, also a
 frame that is for some of them only (`{koupit si}`).
 
 From 2.2 a frame that begins with verbs of its synset is on those verbs
-only (`scripts/frames_to_senses.py`): 887 senses in 322 synsets change
-their frames, by `set_frames` records, and the links between senses and
-frames go from 4,112 to 2,807.  143 verbs are left with no frame: the
-frames of their synset are for its other verbs.  A frame that names no
-verb (487 of them), or only verbs that are not in its synset (99),
-stays on all the verbs of the synset.
+only (`scripts/frames_to_senses.py`): about 900 senses in 322 synsets
+change their frames, by `set_frames` records, and the links between
+senses and frames go from 4,112 to about 2,800.  About 145 verbs are
+left with no frame: the frames of their synset are for its other verbs.
+A frame that names no verb (487 of them), or only verbs that are not in
+its synset (99), stays on the verbs that had it in 2.1; a verb added to
+the synset since has only the frames that name it.
 
 The examples are part of the frame's text, after `%`.  From 2.2 they
 are also `Example` elements of the synset
-(`scripts/frame_examples.py`): 1,243 of them, each the whole text after
+(`scripts/frame_examples.py`): 1,245 of them, each the whole text after
 a `%`, since many are several variants with commas between (*dívali se
 na film, na televizi, na požár domu*).  The 96 examples of frames that
 name only verbs their synset does not have are not copied.
