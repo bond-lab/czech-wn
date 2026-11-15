@@ -15,6 +15,16 @@ history.  `wncze-2.1.jsonl` holds the 6,266 changes that made 2.2 from
 2.1 itself is made from the DEBVisDic source by
 `scripts/visdic2lmf.py`; nothing later is rebuilt from that source.
 
+## Since 2.2
+
+`wncze-2.2.jsonl`:
+
+* Six synsets that are Princeton 2.0 synsets but had no ILI get the ILI
+  of their Princeton 3.0 concept (*nezvyklý*, *kněžské svěcení*,
+  *španělská omáčka*, *cappucinno*, *mnohem více*, *andezit*).  The
+  map from 2.0 missed them, mostly because 2.0 misspells the English
+  word.  See issue 8.
+
 ## A change record
 
 ```json
