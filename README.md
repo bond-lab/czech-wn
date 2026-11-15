@@ -64,7 +64,16 @@ the XML file into `wn` with the reverse relations added.
 > In *LDK Workshops: OntoLex, TIAD and Challenges for Wordnets*,
 > pages 146–151. Galway, Ireland: CEUR-WS.org.
 
-BibTeX is in `citation.bib`; more references are in
+and, to say which data you used, the release:
+
+> Karel Pala, Adam Rambousek, Aleš Horák, Pavel Smrž, Sandra Tukačová
+> and Francis Bond. 2026. *Czech WordNet* (Version 2.2) [Dataset].
+> Zenodo. <https://doi.org/10.5281/zenodo.24256733>
+
+<https://doi.org/10.5281/zenodo.24256732> is the DOI of all releases
+and always leads to the latest one.
+
+BibTeX for both is in `citation.bib`; more references are in
 `notes/references.md`.
 
 ## Releases

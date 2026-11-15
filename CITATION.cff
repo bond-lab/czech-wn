@@ -1,0 +1,94 @@
+cff-version: 1.2.0
+message: >-
+  If you use the Czech WordNet, please cite the paper given as the
+  preferred citation, and this release if you want to say which
+  version you used.
+title: Czech WordNet
+type: dataset
+version: "2.2"
+date-released: "2026-11-15"
+doi: 10.5281/zenodo.24256732
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24256732
+    description: All releases; always leads to the latest one
+  - type: doi
+    value: 10.5281/zenodo.24256733
+    description: Release 2.2
+license: CC-BY-SA-4.0
+url: "https://github.com/bond-lab/czech-wn"
+repository-code: "https://github.com/bond-lab/czech-wn"
+abstract: >-
+  The Czech WordNet is a lexical database of Czech.  Nouns, verbs,
+  adjectives and adverbs are grouped into sets of synonyms (synsets),
+  each standing for one concept, and the synsets are linked by semantic
+  relations such as hypernymy, meronymy and antonymy.  Almost all
+  synsets are linked to Princeton WordNet and, through the Interlingual
+  Index, to wordnets of other languages.  It was created by the Natural
+  Language Processing Centre, Faculty of Informatics, Masaryk
+  University, Brno, and is maintained and extended by the Computational
+  Linguistics Lab at Palacký University, Olomouc.  It is released in
+  WN-LMF, for use with the wn Python module.
+keywords:
+  - wordnet
+  - Czech
+  - lexical database
+  - lexical semantics
+  - WN-LMF
+  - Interlingual Index
+  - valency frames
+authors:
+  - family-names: Pala
+    given-names: Karel
+    affiliation: Masaryk University
+  - family-names: Rambousek
+    given-names: Adam
+    affiliation: Masaryk University
+    orcid: "https://orcid.org/0000-0003-1818-1922"
+  - family-names: Horák
+    given-names: Aleš
+    affiliation: Masaryk University
+  - family-names: Smrž
+    given-names: Pavel
+  - family-names: Tukačová
+    given-names: Sandra
+  - family-names: Bond
+    given-names: Francis
+    affiliation: Palacký University Olomouc
+    orcid: "https://orcid.org/0000-0003-4973-8068"
+preferred-citation:
+  type: conference-paper
+  title: Overview and Future of Czech Wordnet
+  authors:
+    - family-names: Rambousek
+      given-names: Adam
+    - family-names: Pala
+      given-names: Karel
+    - family-names: Tukačová
+      given-names: Sandra
+  collection-title: "LDK Workshops: OntoLex, TIAD and Challenges for Wordnets"
+  collection-type: proceedings
+  year: 2017
+  start: 146
+  end: 151
+  publisher:
+    name: CEUR-WS.org
+  conference:
+    name: "Challenges for Wordnets, workshop at Language, Data and Knowledge (LDK 2017)"
+    city: Galway
+    country: IE
+  url: "https://ceur-ws.org/Vol-1899/"
+references:
+  - type: article
+    title: "Sustainable long-term WordNet development and maintenance: Case study of the Czech WordNet"
+    authors:
+      - family-names: Rambousek
+        given-names: Adam
+      - family-names: Horák
+        given-names: Aleš
+      - family-names: Pala
+        given-names: Karel
+    journal: "Cognitive Studies | Études cognitives"
+    issue: "18"
+    year: 2018
+    doi: 10.11649/cs.1715
