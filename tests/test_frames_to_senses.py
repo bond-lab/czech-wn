@@ -1,7 +1,7 @@
 """Tests of scripts/frames_to_senses.py."""
 # ruff: noqa: I001  (release must be imported first: it finds ntumc)
 
-import release  # noqa: F401  (puts ../NTUMC on the path)
+import release  # puts ../NTUMC on the path
 import frames_to_senses as f
 from ntumc.wordnet.model import Entry, Frame, Sense
 
@@ -44,7 +44,8 @@ def test_records_carry_the_old_and_new_frames():
 
     # Assert
     assert [(r.id, r.action, r.synset, r.lemma, r.old, r.new) for r in made] == [
-        ("wncze-2.1-7", "set_frames", "wncze-1-v", "uplatit", "f1 f2 f3", "f2 f3")]
+        (f"wncze-{release.BASE_VERSION}-7", "set_frames", "wncze-1-v", "uplatit",
+         "f1 f2 f3", "f2 f3")]
 
 
 def test_placed_gives_a_verb_without_frames_the_frame_that_names_it():

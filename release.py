@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Make the next release of the Czech WordNet: the last release plus the changes.
 
-    uv run release.py VERSION    # e.g. 2.2
+    uv run release.py VERSION    # e.g. 2.3
 
 The base is the released wncze-BASE_VERSION.xml, downloaded once to
 build/base/ and checked against its checksum.  The changes are
@@ -45,11 +45,11 @@ from ntumc.wordnet.model import Entry, Item, Lexicon, Synset  # noqa: E402
 from visdic2lmf import SENSE_ID, escape_lemma, package  # noqa: E402
 
 WN_ID = "wncze"
-BASE_VERSION = "2.1"
+BASE_VERSION = "2.2"
 BASE_URL = ("https://github.com/bond-lab/czech-wn/releases/download/"
             f"v{BASE_VERSION}/{WN_ID}-{BASE_VERSION}.tar.xz")
-BASE_XZ_SHA256 = "750777b652ae8e66af15521478d1b62e63179d61676b48805522333d1f635c36"
-BASE_XML_SHA256 = "8cc72dd1fd8da7bcc966db020bbf042858cb52f3f2ee4559b71de5480df3f135"
+BASE_XZ_SHA256 = "b331c2256a5608d848c79a7d4ee9925aa86f03214ee278ecde80b63ff4d5c023"
+BASE_XML_SHA256 = "b8db5dac8c7e8b0cf1d111bf599f1d7417e9752bb1cb10ec88edd34ff36ebed2"
 BASE = ROOT / "build" / "base" / f"{WN_ID}-{BASE_VERSION}.xml"
 CHANGES = ROOT / "changes" / f"{WN_ID}-{BASE_VERSION}.jsonl"
 DTD = ROOT.parent / "schemas" / "WN-LMF-1.4.dtd"
@@ -189,7 +189,7 @@ def release(version: str, out: Path, records: Path = CHANGES) -> list[str]:
 def main() -> None:
     """Entry point."""
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("version", help="version of the new release, e.g. 2.2")
+    parser.add_argument("version", help="version of the new release, e.g. 2.3")
     parser.add_argument("-o", "--outdir", default=str(ROOT / "release"),
                         help="output directory (default: release/)")
     args = parser.parse_args()

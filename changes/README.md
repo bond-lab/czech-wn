@@ -2,14 +2,15 @@
 
 From release 2.1 on, the master copy of the Czech WordNet in WN-LMF is
 
-* the last release, `wncze-2.1.xml` (fetched from the GitHub release and
-  checked against its checksum by `release.py`), and
-* `wncze-2.1.jsonl`: every change made since, one per line, in order.
+* the last release, now `wncze-2.2.xml` (fetched from the GitHub
+  release and checked against its checksum by `release.py`), and
+* `wncze-2.2.jsonl`: every change made since, one per line, in order.
 
-`uv run release.py 2.2` applies the changes to the base and writes
-`release/wncze-2.2.xml` and its package.  After a release, the new XML
-is the base and a new, empty `wncze-2.2.jsonl` is started; the old file
-stays as the history.
+`uv run release.py 2.3` applies the changes to the base and writes
+`release/wncze-2.3.xml` and its package.  After a release, the new XML
+is the base and a new, empty log is started; the old file stays as the
+history.  `wncze-2.1.jsonl` holds the 6,266 changes that made 2.2 from
+2.1; the rest of this page describes them.
 
 2.1 itself is made from the DEBVisDic source by
 `scripts/visdic2lmf.py`; nothing later is rebuilt from that source.

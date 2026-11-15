@@ -1,7 +1,7 @@
 """Tests of scripts/frame_examples.py."""
 # ruff: noqa: I001  (release must be imported first: it finds ntumc)
 
-import release  # noqa: F401  (puts ../NTUMC on the path)
+import release  # puts ../NTUMC on the path
 import frame_examples as x
 from ntumc.wordnet.model import Entry, Frame, Sense, Synset, Text
 
@@ -40,5 +40,5 @@ def test_records_name_the_frame_as_the_source():
 
     # Assert
     assert [(r.id, r.action, r.synset, r.new) for r in made] == [
-        ("wncze-2.1-3", "add_example", "wncze-1-v", "dívali se na film")]
+        (f"wncze-{release.BASE_VERSION}-3", "add_example", "wncze-1-v", "dívali se na film")]
     assert "f1" in made[0].source

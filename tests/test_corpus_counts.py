@@ -5,7 +5,7 @@ import sqlite3
 from collections import Counter
 from pathlib import Path
 
-import release  # noqa: F401  (puts ../NTUMC on the path)
+import release  # puts ../NTUMC on the path
 import corpus_counts as c
 from ntumc.wordnet.model import Count, Entry, Sense, Synset
 
@@ -51,7 +51,7 @@ def test_records_leaves_out_a_count_that_is_already_right():
 
     # Assert
     assert [(r.id, r.action, r.synset, r.lemma, r.new, r.corpus) for r in made] == [
-        ("wncze-2.1-10", "set_count", "wncze-2-n", "vlk", "2", "NTU-MC")]
+        (f"wncze-{release.BASE_VERSION}-10", "set_count", "wncze-2-n", "vlk", "2", "NTU-MC")]
 
 
 def test_records_changes_a_count_that_differs():

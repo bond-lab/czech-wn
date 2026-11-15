@@ -94,7 +94,7 @@ licences: <https://live.european-language-grid.eu/catalogue/lcr/2364>.
 | | |
 |---|---|
 | `CHANGELOG.md` | the major changes in each release |
-| `changes/` | the changes since 2.1, one record per line; see `changes/README.md` |
+| `changes/` | the changes since the last release (`wncze-2.2.jsonl`) and those that made 2.2 from 2.1, one record per line; see `changes/README.md` |
 | `release.py` | makes the next release: the last release plus the changes |
 | `sources/` | the files as Masaryk University gave them to us: three versions of the Czech WordNet, and the PDT annotation dictionary, which has **a different licence**; see `sources/README.md` |
 | `notes/` | how 2.1 was converted (`conversion.md`); the verb frames (`verb-frames.md`); loading with reverse relations (`reverse_relations.py`); references (`references.md`) |
@@ -106,10 +106,10 @@ licences: <https://live.european-language-grid.eu/catalogue/lcr/2364>.
 ## Making a release
 
 ```
-uv run release.py 2.2     # -> release/wncze-2.2.xml, release/wncze-2.2.tar.xz
+uv run release.py 2.3     # -> release/wncze-2.3.xml, release/wncze-2.3.tar.xz
 ```
 
-It downloads the released 2.1 once and checks it, applies the changes,
+It downloads the last release once and checks it, applies the changes,
 and checks the result against the WN-LMF DTD and with the validation of
 `wn`.  It needs `NTUMC` checked out beside this repository (and
 `schemas`, for the DTD).

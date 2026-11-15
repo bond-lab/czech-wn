@@ -1,7 +1,7 @@
 """Tests of scripts/princeton_links.py."""
 # ruff: noqa: I001  (release must be imported first: it finds ntumc)
 
-import release  # noqa: F401  (puts ../NTUMC on the path)
+import release  # puts ../NTUMC on the path
 import princeton_links as p
 from ntumc.wordnet.model import Relation, Synset
 
@@ -74,7 +74,7 @@ def test_records_are_numbered_on_from_the_log():
     made = p.records(found, 1413, "2026-11-15")
 
     # Assert
-    assert [r.id for r in made] == ["wncze-2.1-1413", "wncze-2.1-1414"]
+    assert [r.id for r in made] == [f"wncze-{release.BASE_VERSION}-{n}" for n in (1413, 1414)]
     assert made[0].action == "add_relation"
     assert (made[1].synset, made[1].link, made[1].target) == (
         "wncze-3-n", "similar", "wncze-4-n")
