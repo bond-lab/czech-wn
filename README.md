@@ -89,7 +89,7 @@ licences: <https://live.european-language-grid.eu/catalogue/lcr/2364>.
 | `sources/` | the files as Masaryk University gave them to us: three versions of the Czech WordNet, and the PDT annotation dictionary, which has **a different licence**; see `sources/README.md` |
 | `notes/` | how 2.1 was converted (`conversion.md`); the verb frames (`verb-frames.md`); references (`references.md`) |
 | `scripts/visdic2lmf.py` | made release 2.1 from the source |
-| `scripts/` | the scripts that made change records: from the NTU-MC wordnet (`ntumc2changes.py`), from Princeton WordNet (`princeton_links.py`), from the NTU-MC Czech corpus (`corpus_counts.py`) and from the verbs the frames name (`frames_to_senses.py`) |
+| `scripts/` | the scripts that made change records: from the NTU-MC wordnet (`ntumc2changes.py`), from Princeton WordNet (`princeton_links.py`), from the NTU-MC Czech corpus (`corpus_counts.py`) and from the verb frames (`frames_to_senses.py`, `frame_examples.py`) |
 | `additions/` | words added in 2025 while annotating *War with the Newts*; now change records |
 | `tests/` | tests of the conversion and of the release |
 

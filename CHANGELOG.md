@@ -14,6 +14,8 @@ in `changes/`; see `changes/README.md` for the details.
   tagging Karel Čapek's *Válka s mloky*, with 508 new synsets for them.
 * 381 relations that link the new synsets to the rest, from Princeton
   WordNet 3.0.
+* 1,243 examples for 793 verb synsets, from the examples in their verb
+  frames.
 * Counts for 1,736 senses: how often each is tagged in the NTU-MC Czech
   corpus.
 

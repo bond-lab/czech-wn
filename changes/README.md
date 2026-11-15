@@ -230,6 +230,16 @@ In 2.1 every verb of a synset names all the synset's frames.  887
 begins with verbs of its synset on those verbs only.  See
 `notes/verb-frames.md`.
 
+## Examples from the verb frames (2026-11-15)
+
+A verb frame ends with examples.  1,243 `add_example` records
+(`scripts/frame_examples.py`) make them examples of the synset too, for
+793 synsets; each names its frame as the source.  The text is kept
+whole, since it cannot be cut at its commas safely.  Of 100 read, 91
+show a verb of the synset.  The 96 examples of frames that name only
+verbs their synset does not have are left out.  See
+`notes/verb-frames.md`.
+
 ## Validation
 
 After writing the XML, `release.py` checks it against the WN-LMF DTD

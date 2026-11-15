@@ -127,8 +127,12 @@ frames of their synset are for its other verbs.  A frame that names no
 verb (487 of them), or only verbs that are not in its synset (99),
 stays on all the verbs of the synset.
 
-The examples are part of the frame's text, after `%`; they are not
-`Example` elements of the synset.
+The examples are part of the frame's text, after `%`.  From 2.2 they
+are also `Example` elements of the synset
+(`scripts/frame_examples.py`): 1,243 of them, each the whole text after
+a `%`, since many are several variants with commas between (*dívali se
+na film, na televizi, na požár domu*).  The 96 examples of frames that
+name only verbs their synset does not have are not copied.
 
 Where the source groups
 a synset's frames in more than one `VALENCY`, the synset's note says
