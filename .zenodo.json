@@ -1,0 +1,76 @@
+{
+  "title": "Czech WordNet",
+  "version": "2.2",
+  "upload_type": "dataset",
+  "access_right": "open",
+  "license": "cc-by-sa-4.0",
+  "language": "ces",
+  "description": "<p>The Czech WordNet is a lexical database of Czech. Nouns, verbs, adjectives and adverbs are grouped into sets of synonyms (synsets), each standing for one concept, and the synsets are linked by semantic relations such as hypernymy, meronymy and antonymy. Almost all synsets are linked to Princeton WordNet and, through the Interlingual Index, to wordnets of other languages. Some synsets have a definition, examples, or verb valency frames.</p><p>Release 2.2 has 34,662 words, 48,302 senses and 28,977 synsets, with 34,831 relations between synsets, 968 definitions, 1,459 examples and 1,341 verb frames.</p><p>The Czech WordNet was created by the Natural Language Processing Centre, Faculty of Informatics, Masaryk University, Brno, in the EuroWordNet and BalkaNet projects and after. It is now maintained and extended by the Computational Linguistics Lab at Palacký University, Olomouc. It is released in WN-LMF, the XML format of the Global WordNet Association, and can be used with the wn Python module.</p><p>From release 2.2 on, a release is the last release and an ordered log of changes, each with its source and reason; the log is in the repository.</p>",
+  "creators": [
+    {
+      "name": "Pala, Karel",
+      "affiliation": "Masaryk University"
+    },
+    {
+      "name": "Rambousek, Adam",
+      "affiliation": "Masaryk University",
+      "orcid": "0000-0003-1818-1922"
+    },
+    {
+      "name": "Horák, Aleš",
+      "affiliation": "Masaryk University"
+    },
+    {
+      "name": "Smrž, Pavel"
+    },
+    {
+      "name": "Tukačová, Sandra"
+    },
+    {
+      "name": "Bond, Francis",
+      "affiliation": "Palacký University Olomouc",
+      "orcid": "0000-0003-4973-8068"
+    }
+  ],
+  "contributors": [
+    {
+      "name": "Daňková, Kateřina",
+      "type": "DataCurator"
+    },
+    {
+      "name": "Natural Language Processing Centre, Faculty of Informatics, Masaryk University",
+      "type": "ResearchGroup"
+    },
+    {
+      "name": "Computational Linguistics Lab, Palacký University Olomouc",
+      "type": "ResearchGroup"
+    }
+  ],
+  "keywords": [
+    "wordnet",
+    "Czech",
+    "lexical database",
+    "lexical semantics",
+    "WN-LMF",
+    "Interlingual Index",
+    "valency frames"
+  ],
+  "notes": "Please cite: Adam Rambousek, Karel Pala and Sandra Tukačová. 2017. Overview and Future of Czech Wordnet. In LDK Workshops: OntoLex, TIAD and Challenges for Wordnets, pages 146-151. Galway, Ireland: CEUR-WS.org.",
+  "related_identifiers": [
+    {
+      "identifier": "https://deb.fi.muni.cz/",
+      "relation": "isDerivedFrom",
+      "scheme": "url"
+    },
+    {
+      "identifier": "10.11649/cs.1715",
+      "relation": "isDescribedBy",
+      "scheme": "doi"
+    }
+  ],
+  "references": [
+    "Adam Rambousek, Karel Pala and Sandra Tukačová. 2017. Overview and Future of Czech Wordnet. In LDK Workshops: OntoLex, TIAD and Challenges for Wordnets, pages 146-151. Galway, Ireland: CEUR-WS.org.",
+    "Adam Rambousek, Aleš Horák and Karel Pala. 2018. Sustainable long-term WordNet development and maintenance: Case study of the Czech WordNet. Cognitive Studies | Études cognitives 18. https://doi.org/10.11649/cs.1715",
+    "Karel Pala and Pavel Smrž. 2004. Building Czech Wordnet. Romanian Journal of Information Science and Technology 7(1-2): 79-88."
+  ]
+}
