@@ -13,11 +13,13 @@ in `changes/`; see `changes/README.md` for the details.
 ### Fixed
 
 * Six synsets get the ILI of their Princeton 3.0 concept.
+* *metér* is a word for the typesetter (i89135, with *sazeč* and
+  *typograf*), not a concept of its own.
 
 ### Changed
 
 * Two lexicons are released: `wncze`, with the English definitions and
-  the relations that omw-ntumc gives the 117 concepts shared with other
+  the relations that omw-ntumc gives the 116 concepts shared with other
   NTU-MC wordnets, and `wncze-min` without them, for Cygnet.
 
 ## 2.2 (2026-11-15)

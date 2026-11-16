@@ -16,7 +16,7 @@ lexicons, each with its package:
   relations are in the shared lexicon `omw-ntumc`.  Cygnet takes this
   one, with omw-ntumc beside it.
 * `release/wncze-2.3.xml` (id `wncze`), the export: the minimal lexicon
-  with what `omw-ntumc` says put back (117 definitions and 104
+  with what `omw-ntumc` says put back (116 definitions and 102
   relations), for users of `wn`, who want one file.
 
 `release.py` fails if the export lacks anything the lexicon said before
