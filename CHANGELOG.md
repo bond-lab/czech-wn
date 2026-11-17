@@ -9,6 +9,8 @@ in `changes/`; see `changes/README.md` for the details.
 
 * English definitions, from Princeton WordNet 2.0, for 75 synsets that
   have no ILI and had no definition.
+* A Czech definition, and an example from the NTU-MC corpus, for *moci*
+  'can' (`ntumc02041`).
 
 ### Fixed
 
