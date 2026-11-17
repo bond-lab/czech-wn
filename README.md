@@ -91,6 +91,14 @@ BibTeX for both is in `citation.bib`; more references are in
   shared with other wordnets to
   [omw-ntumc](https://github.com/bond-lab/omw-ntumc) and is what
   [Cygnet](https://github.com/omwn/cygnet) loads.
+* **Senses to check.**  From 2.3, 70 senses have a note that starts
+  `to check:` (the `note` attribute of the sense).  The NTU-MC corpus
+  is tagged with them, but no Czech speaker has confirmed them: most
+  were added by annotators and questioned when they were read through
+  (*ale* as a noun, *smět* for 'can').  Nothing the corpus is tagged
+  with is left out of the wordnet unless the corpus is corrected as
+  well, so they are in, marked, until someone has checked whether the
+  sense or the tag is wrong.  `changes/README.md` has the details.
 * **From 2.2 on** a release is the last release and an ordered log of changes
   (`changes/`), as for the Japanese, Chinese and Malay/Indonesian
   wordnets of [NTU-MC](https://github.com/bond-lab/NTUMC), the Nanyang
@@ -115,7 +123,7 @@ licences: <https://live.european-language-grid.eu/catalogue/lcr/2364>.
 | `sources/` | the files as Masaryk University gave them to us: three versions of the Czech WordNet, and the PDT annotation dictionary, which has **a different licence**; see `sources/README.md` |
 | `notes/` | how 2.1 was converted (`conversion.md`); the verb frames (`verb-frames.md`); loading with reverse relations (`reverse_relations.py`); references (`references.md`) |
 | `scripts/visdic2lmf.py` | made release 2.1 from the source |
-| `scripts/` | the scripts that made change records: from the NTU-MC wordnet (`ntumc2changes.py`), from Princeton WordNet (`princeton_links.py`), from the NTU-MC Czech corpus (`corpus_counts.py`) and from the verb frames (`frames_to_senses.py`, `frame_examples.py`) |
+| `scripts/` | the scripts that made change records: from the NTU-MC wordnet (`ntumc2changes.py`), from Princeton WordNet (`princeton_links.py`), from the NTU-MC Czech corpus (`corpus_counts.py`, `held_to_records.py`) and from the verb frames (`frames_to_senses.py`, `frame_examples.py`) |
 | `additions/` | words added in 2025 while annotating *War with the Newts*; now change records |
 | `tests/` | tests of the conversion and of the release |
 

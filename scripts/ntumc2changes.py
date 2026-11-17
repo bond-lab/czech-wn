@@ -44,7 +44,7 @@ HELD = ROOT / "changes" / "held-2.1.tsv"
 ADDITIONS = ROOT / "additions" / "2025-04"
 MAP30 = ROOT.parent / "cili" / "ili-map-pwn30.tab"
 MAP20 = ROOT.parent / "cili" / "older-wn-mappings" / "ili-map-pwn20.tab"
-REGISTRY = ROOT.parent / "omw-ntumc" / "registry.tsv"
+REGISTRY = ROOT.parent / "omw-ntumc" / "data" / "registry.tsv"
 PRONOUNS = ROOT.parent / "omw-pronoun" / "data" / "ntumc-pronouns.tsv"
 
 FROZEN = "NTU-MC wordnet database, frozen 2026-11-13"

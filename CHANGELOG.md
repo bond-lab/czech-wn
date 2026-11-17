@@ -11,6 +11,10 @@ in `changes/`; see `changes/README.md` for the details.
   have no ILI and had no definition.
 * A Czech definition, and an example from the NTU-MC corpus, for *moci*
   'can' (`ntumc02041`).
+* 70 senses that the NTU-MC corpus is tagged with, each with the note
+  "to check" until a Czech speaker has looked at it: 67 that annotators
+  added and that were held, and 3 from the NTU-MC's copy of the Czech
+  wordnet.  31 synsets, 9 examples and 1 definition come with them.
 
 ### Fixed
 
@@ -21,7 +25,7 @@ in `changes/`; see `changes/README.md` for the details.
 ### Changed
 
 * Two lexicons are released: `wncze`, with the English definitions and
-  the relations that omw-ntumc gives the 116 concepts shared with other
+  the relations that omw-ntumc gives the 128 concepts shared with other
   NTU-MC wordnets, and `wncze-min` without them, for Cygnet.
 
 ## 2.2 (2026-11-15)

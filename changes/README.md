@@ -16,7 +16,7 @@ lexicons, each with its package:
   relations are in the shared lexicon `omw-ntumc`.  Cygnet takes this
   one, with omw-ntumc beside it.
 * `release/wncze-2.3.xml` (id `wncze`), the export: the minimal lexicon
-  with what `omw-ntumc` says put back (116 definitions and 102
+  with what `omw-ntumc` says put back (128 definitions and 113
   relations), for users of `wn`, who want one file.
 
 `release.py` fails if the export lacks anything the lexicon said before
@@ -53,6 +53,22 @@ for `wncze`.  `wncze-2.1.jsonl` holds the 6,266 changes that made 2.2 from
   Cygnet drops it.  Most are adjectives that Princeton 3.0 no longer
   has (english-wordnet issue 1465); when a synset gets an ILI, the
   English definition can go.
+* *moci* 'can' (`ntumc02041`) gets a Czech definition and, as its
+  example, a sentence of the corpus.
+* 70 senses that the NTU-MC corpus is tagged with go in, each with the
+  note "to check" (`scripts/held_to_records.py`, 2026-11-17).  The
+  rule is Francis Bond's: nothing the corpus is tagged with is left out
+  of the wordnet unless the corpus is fixed as well.  67 are annotators'
+  additions that `held-2.1.tsv` held for a Czech speaker (*ale*,
+  *muset*, *smět*, 202 tags in all); 3 are in the database's own copy
+  of the Czech wordnet but not in release 2.1 (*nějaký*, *spravedlivý*,
+  *národ*).  With them come 31 synsets, the 9 examples and 1 definition
+  that waited for those synsets, and a count for each sense.
+  *desetiletý* and *upírat* are written in lower case.  Two are left
+  out because the synset has the word in its right form and the corpus
+  lemma is to be corrected: *salamander* (*salamandr*) and *MUDr*
+  (*MUDr.*).  The senses still need a Czech speaker: either the sense
+  or the tag is wrong.
 
 ## A change record
 
@@ -141,6 +157,10 @@ is not a reason to drop what a person added, and reviewers are known to
 question words that are fine (a looser or narrower word, a derived
 form), so nothing is rejected yet.  Because of them, 56 synsets are not
 added, and 21 examples and 1 definition wait for their synset.
+
+On 2026-11-17 the 67 held senses that the corpus is tagged with were
+added after all, marked "to check" (see "Since 2.2"); their `ruling`
+says `in the log, to check`.  The other 47 senses stay held.
 
 To rule, write `add` or `drop` in the `ruling` column.  While the log
 holds only these first records, `scripts/ntumc2changes.py` can make it
